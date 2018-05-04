@@ -2,6 +2,8 @@
 //获取应用实例
 const app = getApp()
 
+import config from '../../config'
+
 Page({
   data: {
     motto: '测试',
@@ -48,6 +50,7 @@ Page({
     // wx.navigateTo({
     //
     // })
+    console.log(config.home_config)
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
