@@ -1,12 +1,33 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
+    "src/index/index",
+    "src/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "borderStyle":"#fff",
+    "backgroundColor":"#fff",
+    "color":"#000",
+    "selectedColor":"#ccc",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "src/index/index",
+        "text": "发红包"
+      },
+      {
+        "pagePath": "src/index/index",
+        "text": "抢红包"
+      },
+      {
+        "pagePath": "src/logs/logs",
+        "text": "我的红包"
+      }
+    ]
   }
 }

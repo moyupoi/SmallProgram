@@ -47,10 +47,26 @@ Page({
     // })
   },
   bindSkip: function() {
+    wx.request({
+      url: config.test_config,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        tel: '18600146531'
+      },
+      success: function(res) {
+        if(res.data.code ==0){
+          resolve(res)
+        }
+      }
+    })
     // wx.navigateTo({
     //
     // })
-    console.log(config.home_config)
+    //
+    console.log(config.test_config)
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

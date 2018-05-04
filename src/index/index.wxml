@@ -16,7 +16,7 @@
   </view>
   <view class="usermotto">
     <text class="user-motto" bindtap="bindText">{{motto}}</text>
-    <navigator url="/pages/logs/logs" open-type="navigate" hover-class="none">跳转</navigator>
+    <navigator url="/src/logs/logs" open-type="switchTab" hover-class="none">跳转</navigator>
     <button bindtap="bindSkip">调用接口</button>
   </view>
 </view>

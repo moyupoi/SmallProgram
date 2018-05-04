@@ -8,5 +8,5 @@
   box-sizing: border-box;
 }
 .navigator-hover {
-    color: blue;
+  color: blue;
 }
