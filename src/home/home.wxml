@@ -1,0 +1,47 @@
+<view class="container">
+  <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}">
+    <swiper-item class="banner-item">
+      <text>直连十余家银行</text>
+      <text>秒批卡 额度高</text>
+    </swiper-item>
+    <swiper-item class="banner-item">
+      <text>反正额度高就对了</text>
+      <text>买买买</text>
+    </swiper-item>
+  </swiper>
+  <text class="title">{{recommendText}}</text>
+  <swiper class="recommend" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}">
+    <swiper-item class="rec-item">
+      <image src="{{zhongxin}}"></image>
+      <view>
+        <text>中信银行</text>
+        <label>特出工艺 免费制卡</label>
+        <label>周五购物88折</label>
+        <button bindtap="bindSkip">立即办卡</button>
+      </view>
+    </swiper-item>
+    <swiper-item class="rec-item">
+      <image src="{{zhongxin}}"></image>
+      <view>
+        <text>招商银行</text>
+        <label>特出工艺 免费制卡</label>
+        <label>周五购物88折</label>
+        <button bindtap="bindSkip">立即办卡</button>
+      </view>
+    </swiper-item>
+  </swiper>
+  <label class="title">{{officeCardText}}</label>
+  <view class="office-card">
+    <view class="card-item" wx:for="{{officeCard}}" wx:for-index="index">
+      <image src="{{item.img}}"></image>
+      <view>
+        <label>{{item.title}}</label>
+        <text>{{item.describe}}</text>
+      </view>
+      <p>通过率:
+        <span>{{item.rate}}</span>
+      </p>
+    </view>
+  </view>
+  <button class="query">进度查询</button>
+</view>

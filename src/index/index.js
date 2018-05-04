@@ -22,10 +22,10 @@ Page({
     autoplay: false,
     indicatorDots: true,
     onLoad: function(options) {
-    this.setData({
-      title: options.title
-    })
-  }
+      this.setData({
+        title: options.title
+      })
+    }
   },
   //事件处理函数
   bindViewTap: function() {

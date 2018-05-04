@@ -1,13 +1,14 @@
 {
   "pages":[
+    "src/home/home",
     "src/index/index",
     "src/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#00DBB2",
+    "navigationBarTitleText": "网利金融",
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
     "borderStyle":"#fff",
