@@ -2,7 +2,8 @@
   "pages":[
     "src/home/home",
     "src/index/index",
-    "src/logs/logs"
+    "src/logs/logs",
+    "src/bank/bank"
   ],
   "window":{
     "backgroundTextStyle":"light",
