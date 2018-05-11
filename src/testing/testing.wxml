@@ -1,0 +1,9 @@
+<view class="testing">
+  <text>败家是一种怎么样的体验</text>
+  <radio-group class="radioGroup" bindchange="radioChange">
+    <label class="radio" wx:for="{{items}}">
+      <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+  </radio-group>
+  <button bindtap="next">下一题</button>
+</view>

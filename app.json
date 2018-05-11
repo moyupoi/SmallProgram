@@ -1,21 +1,24 @@
 {
-  "pages":[
+  "pages": [
+    "src/screenshot/screenshot",
+    "src/testing/testing",
     "src/home/home",
+    "src/bankList/bankList",
     "src/index/index",
     "src/logs/logs",
     "src/bank/bank"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00DBB2",
     "navigationBarTitleText": "网利金融",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "borderStyle":"#fff",
-    "backgroundColor":"#fff",
-    "color":"#000",
-    "selectedColor":"#ccc",
+    "borderStyle": "#fff",
+    "backgroundColor": "#fff",
+    "color": "#000",
+    "selectedColor": "#ccc",
     "position": "bottom",
     "list": [
       {

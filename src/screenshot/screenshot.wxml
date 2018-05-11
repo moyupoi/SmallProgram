@@ -1,0 +1,10 @@
+<view hidden="{{maskHidden}}" class="mask"></view>
+<!-- <button bindtap="createNewImg">点击</button> -->
+<view class='canvasBox'>
+  <canvas style="width:1440rpx; height:2200rpx;" canvas-id="myCanvas"/>
+</view>
+<view class="pictureDisplay">
+  <image src='{{imagePath}}' class="saveImg"></image>
+  <button bindtap='previewImg' class="btnImg">点击分享</button>
+</view>
+<button class="pk">发起群PK</button>
