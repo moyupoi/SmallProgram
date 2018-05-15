@@ -6,28 +6,34 @@ Page({
     bankName: '',
     imagePath: '',
     bankArray: [],
-    foodArray: [],
+    themeArray: [],
     bankArrayIndex: 0,
-    foodArrayIndex: 0,
-    parPage: 10,
+    themeArrayIndex: 0,
+    parPage: 4,
     page: 1,
     bankCards: [],
     hasMoreData: true
   },
   onLoad: function (options) {
+    if (options.id) {
+      this.setData({
+        themeArrayIndex: options.id
+      })
+    }
     var that = this
     if (app.employIdCallback) {
-      that.loadInit()
+      that.loadInit(that.data.parPage, that.data.page, '', that.data.themeArrayIndex)
     } else {
       app.employIdCallback = employId => {
         if (employId != '') {
-          that.loadInit()
+          that.loadInit(that.data.parPage, that.data.page, '', that.data.themeArrayIndex)
         }
       }
     }
   },
-  loadInit: function () {
+  loadInit: function (per_page, page, bank_id, theme) {
     var that = this
+    var themes = parseInt(theme) ? theme : ''
     wx.request({
       url: config.host + '/v1/bank_cards',
       method: 'GET',
@@ -36,32 +42,51 @@ Page({
         'Content-Type': 'application/json'
       },
       data: {
-        'per_page': this.data.parPage,
-        'page': this.data.page
+        'per_page': per_page,
+        'page': page,
+        'bank_id': bank_id,
+        'theme': themes
       },
       success: function (res) {
-        console.log(res.data.bank_cards[0])
-        that.setData({
-          bankArray: res.data.banks,
-          foodArray: res.data.bank_card_themes,
-          bankCards: res.data.bank_cards
-        })
+        var bankCards = res.data.bank_cards
+        // console.log(page)
+        // debugger
+        if (page > 1) {
+          bankCards = that.data.bankCards.concat(bankCards)
+          console.log(bankCards)
+          that.setData({
+            bankCards: bankCards,
+            page: that.data.page + 1
+          })
+        } else {
+          that.setData({
+            bankArray: res.data.banks,
+            themeArray: res.data.bank_card_themes,
+            bankCards: bankCards
+          })
+        }
       }
     })
   },
+  selectedTheme: function (event) {
+    this.setData({
+      themeArrayIndex: event.detail.value,
+      page: 1
+    })
+    this.loadInit(this.data.parPage, 1, this.data.bankArray[this.data.bankArrayIndex].id, this.data.themeArray[event.detail.value].id)
+  },
   selectedBank: function (event) {
     this.setData({
-      bankArrayIndex: event.detail.value
+      bankArrayIndex: event.detail.value,
+      page: 1
     })
-  },
-  selectedFood: function (event) {
-    this.setData({
-      foodArrayIndex: event.detail.value
-    })
+    this.loadInit(this.data.parPage, 1, this.data.bankArray[event.detail.value].id, this.data.themeArray[this.data.themeArrayIndex].id)
   },
   onReachBottom: function () {
     wx.showToast({
-      title: "正在刷新数据"
+      title: "正在刷新数据",
     })
+    var themen = this.data.themeArrayIndex ? this.data.themeArrayIndex : ''
+    this.loadInit(this.data.parPage, this.data.page + 1, this.data.bankArray[this.data.bankArrayIndex].id, themen)
   }
 })

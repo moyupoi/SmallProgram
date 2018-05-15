@@ -3,8 +3,8 @@
     <picker mode="selector" range="{{bankArray}}" range-key="{{'name'}}" value="{{bankArrayIndex}}" bindchange="selectedBank" class="selectedBank">
       <text>{{bankArray[bankArrayIndex].name}}</text>
     </picker>
-    <picker mode="selector" range="{{foodArray}}" range-key="{{'value'}}" value="{{foodArrayIndex}}" bindchange="selectedFood" class="selectedFood">
-      <text>{{foodArray[foodArrayIndex].value}}</text>
+    <picker mode="selector" range="{{themeArray}}" range-key="{{'value'}}" value="{{themeArrayIndex}}" bindchange="selectedTheme" class="selectedTheme">
+      <text>{{themeArray[themeArrayIndex].value}}</text>
     </picker>
   </view>
   <view class="cardList">

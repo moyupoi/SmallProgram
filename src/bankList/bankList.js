@@ -6,6 +6,7 @@ Page({
     bankListText: '新手推荐',
     themeCardText: '主题办卡',
     themeCard: [],
+    themeCardIndex: 0,
     autoplay: false,
     indicatorDots: true
   },

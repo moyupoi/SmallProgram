@@ -1,9 +1,9 @@
 {
   "pages": [
-    "src/bank/bank",
-    "src/cardQuestion/cardQuestion",
     "src/bankList/bankList",
+    "src/bank/bank",
 
+    "src/cardQuestion/cardQuestion",
 
     "src/home/home",
     "src/screenshot/screenshot",
