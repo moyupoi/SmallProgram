@@ -1,1 +1,27 @@
-<view class="mask">{{bankName}}</view>
+<view class="bankContainer">
+  <view class="selectType">
+    <picker mode="selector" range="{{bankArray}}" range-key="{{'name'}}" value="{{bankArrayIndex}}" bindchange="selectedBank" class="selectedBank">
+      <text>{{bankArray[bankArrayIndex].name}}</text>
+    </picker>
+    <picker mode="selector" range="{{foodArray}}" range-key="{{'value'}}" value="{{foodArrayIndex}}" bindchange="selectedFood" class="selectedFood">
+      <text>{{foodArray[foodArrayIndex].value}}</text>
+    </picker>
+  </view>
+  <view class="cardList">
+    <navigator url="" hover-class="none" class="cardItem" wx:for="{{bankCards}}" wx:key="index">
+      <view class="quota">
+        <image src="{{item.image_url}}"></image>
+        <text>最高额度: </text>
+        <text>{{item.max_amount}}</text>
+      </view>
+      <view class="describe">
+        <text>{{item.name}}</text>
+        <label>{{item.description}}</label>
+        <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+          <label class="type">{{tag}}</label>
+        </block>
+      </view>
+    </navigator>
+  </view>
+  <navigator url="/src/cardQuestion/cardQuestion" hover-class="none" class="selectCardBtn">选卡太纠结？点我</navigator>
+</view>

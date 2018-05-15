@@ -62,11 +62,6 @@ Page({
         }
       }
     })
-    // wx.navigateTo({
-    //
-    // })
-    //
-    console.log(config.test_config)
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

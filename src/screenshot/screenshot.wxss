@@ -46,4 +46,5 @@ page {
   border: 1rpx solid #00C9A4;
   font-size: 30rpx;
   line-height: 90rpx;
+  margin-bottom: 40rpx;
 }

@@ -1,0 +1,70 @@
+page {
+  background: #F2F2F2;
+}
+.question {
+  text-align: center;
+  overflow: hidden;
+}
+.question lable {
+  font-size: 40rpx;
+  color: #00DBB2;
+  margin-top: 80rpx;
+  margin-bottom: 70rpx;
+  display: block;
+}
+.question view {
+
+}
+.question .selectTitle text{
+  display: inline-block;
+  font-size: 32rpx;
+  color: #666673;
+  margin-bottom: 40rpx;
+}
+.question .selectTitle text:nth-of-type(1) {
+  color: #00DBB2;
+  margin-bottom: 40rpx;
+}
+.question .selectBtn {
+  padding: 0 100rpx;
+}
+.question .selCar label {
+  width: 255rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: block;
+  float: left;
+  font-size: 28rpx;
+  color: #666B6B;
+  border-radius: 50rpx;
+  background: #fff;
+  margin-bottom: 40rpx;
+  margin-right: 40rpx;
+}
+.question .selCar label:nth-of-type(2n) {
+  margin-right: 0;
+}
+.question .selCar {
+  clear: both;
+}
+.question .selCar .isChecked {
+  color: #fff;
+  background: #00DBB2;
+}
+.page {
+  text-align: center;
+}
+.page button {
+  margin-top: 100rpx;
+  width: 220rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 1rpx solid #00DBB2;
+  border-radius: 50rpx;
+  color: #00DBB2;
+  background: #fff;
+  display: inline-block;
+}
+.page .previous {
+  margin-right: 20rpx;
+}

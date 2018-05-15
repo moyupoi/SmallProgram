@@ -75,7 +75,6 @@ Page({
 
   onLoad: function (options) {
     let that = this
-    console.log(options.page)
     // 页面初始化 options为页面跳转所带来的参数
     //动态设置画布大小
     var size = this.setCanvasSize()
@@ -87,7 +86,6 @@ Page({
             that.setData({
               avatarUrl: res.path
             })
-            console.log(res.path)
             that.createNewImg();
           }
         })
@@ -108,7 +106,7 @@ Page({
       size.h = height
     } catch (e) {
       // Do something when catch error
-      console.log("获取设备信息失败" + e)
+      // console.log("获取设备信息失败" + e)
     }
     return size
   },
@@ -164,6 +162,7 @@ Page({
     // context.drawImage(imageZw, size.w / 2 - 25, size.h * 0.7, size.w * 0.14, size.w * 0.14)
     this.settextSentence(context)
     // this.settextDescribe(context)
+
     //绘制图片
     context.draw()
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
@@ -178,7 +177,6 @@ Page({
         canvasId: 'myCanvas',
         success: function (res) {
           var tempFilePath = res.tempFilePath
-          console.log(tempFilePath)
           that.setData({
             imagePath: tempFilePath,
             canvasHidden: false,
@@ -192,7 +190,7 @@ Page({
           // })
         },
         fail: function (res) {
-          console.log(res)
+          // console.log(res)
         }
       })
     }, 500)

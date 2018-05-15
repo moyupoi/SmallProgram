@@ -74,7 +74,6 @@ Page({
     })
   },
   next: function (e) {
-    console.log(this.data.page)
     if (this.data.page.length == 4) {
       wx.reLaunch({
         url: '/src/screenshot/screenshot?page=' + this.data.page + this.data.selected
