@@ -8,7 +8,7 @@ Page({
     rankings: true,
     rankingsList: [],
     userShareGroupsList: [],
-    cccc: false
+    access_token: ''
   },
   onLoad: function (options) {
     var that = this
@@ -16,22 +16,52 @@ Page({
     wx.reportAnalytics('page_view', {
       page_view_name: '首页'
     })
-    if (app.employIdCallback) {
-      this.setData({
-        isAccess_token: false
-      })
-      that.loginUserShareGroups()
-    } else {
-      app.employIdCallback = res => {
-        this.setData({
-          isAccess_token: false
-        })
-        that.loginUserShareGroups()
-        if (app.globalData.shareEncryptedData != '') {
-          that.uploadGroupInfo(res.encryptedData, res.iv)
-        }
-      }
-    }
+
+    // if (app.employIdCallback) {
+    //   this.setData({
+    //     isAccess_token: false
+    //   })
+    //   that.loginUserShareGroups()
+    // } else {
+    //   app.employIdCallback = res => {
+    //     this.setData({
+    //       isAccess_token: false
+    //     })
+    //     that.loginUserShareGroups()
+    //   }
+    // }
+
+
+    wx.login({
+      success: res => {
+        if (res.code) {
+          wx.request({
+            url: config.host + '/v1/users/wechat_login',
+            method: 'POST',
+            data: {
+              code: res.code
+            }, success: function (res) {
+              that.setData({
+                access_token: res.data.access_token
+              })
+              if (res.data.access_token != '') {
+                that.setData({
+                  rankings: true
+                })
+                // 搜索进入的用户
+                that.loginUserShareGroups()
+                if (app.globalData.shareEncryptedData && app.globalData.shareIv) {
+                  // 打开群分享链接进入的用户
+                  that.uploadGroupInfo(app.globalData.shareEncryptedData, app.globalData.shareIv)
+                }
+              }
+            }
+          })
+        } else {}
+      },
+      fail: res => {}
+    })
+
   },
   // 分享
   onShareAppMessage: function (res) {
@@ -48,7 +78,7 @@ Page({
         wx.getShareInfo({
           shareTicket: res.shareTickets[0],
           success: function(res){
-            that.uploadGroupInfo(res.encryptedData, res.iv)
+            that.getGroupsInfo(res.encryptedData, res.iv)
           }
         })
       },
@@ -64,52 +94,38 @@ Page({
       url: config.host + '/v1/user_share_groups/upload_group_info',
       method: 'POST',
       header: {
-        'Authorization': app.globalData.access_token,
+        'Authorization': that.data.access_token,
         'Content-Type': 'application/json'
       },
       data: JSON.stringify({
         'encryptedData': encryptedData,
         'iv': iv
       }),
-      success: function (obj) {
-        that.userShareGroups(obj.data.open_gid)
+      success: function (res) {
+        that.getGroupsInfo(res.data.open_gid)
       }
     })
   },
   // 获取排行榜人员信息
-  userShareGroups: function (openGid) {
+  getGroupsInfo: function (openGid) {
     var that = this
-    console.log(openGid)
     wx.request({
       url: config.host + '/v1/user_share_groups/top',
       method: 'GET',
       data: {
-        'open_gid': openGid
+        'open_gid': 'G7YYY42LEWDz-4JNnSCwvJ621dP0'//openGid
       },
       header: {
-        'Authorization': app.globalData.access_token,
+        'Authorization': that.data.access_token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
         that.setData({
-          rankings: !res.data.is_has_test,
-          cccc: true
+          rankingsList: res.data.users
         })
-        console.log(res)
-        let userList = []
-        if (res.data.users != undefined && res.data.users.length > 0) {
-          res.data.users.map((item, i) => {
-            if (item.name != null && item.avatar_url != null && item.answer_name ) {
-              userList.push(item)
-            }
-          })
-        }
-        that.setData({
-          rankingsList: userList
-        })
-        console.log(that.data.rankingsList)
       },
       fail: function(res) {
+
       }
     })
   },

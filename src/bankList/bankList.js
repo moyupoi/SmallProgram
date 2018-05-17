@@ -12,15 +12,30 @@ Page({
   },
   onLoad: function(options) {
     var that = this
-    if (app.employIdCallback) {
-      that.loadInit()
-    } else {
-      app.employIdCallback = employId => {
-        if (employId != '') {
-          that.loadInit()
-        }
-      }
-    }
+    wx.login({
+      success: res => {
+        if (res.code) {
+          wx.request({
+            url: config.host + '/v1/users/wechat_login',
+            method: 'POST',
+            data: {
+              code: res.code
+            }, success: function (res) {
+              that.setData({
+                access_token: res.data.access_token
+              })
+              if (res.data.access_token != '') {
+                that.setData({
+                  rankings: true
+                })
+                that.loadInit()
+              }
+            }
+          })
+        } else {}
+      },
+      fail: res => {}
+    })
   },
   loadInit: function () {
     var that = this

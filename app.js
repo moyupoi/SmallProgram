@@ -9,7 +9,8 @@ App({
     shareIv: '',
     access_token: '',
     employId: '',
-    shareId: ''
+    shareId: '',
+    shareTicket: ''
   },
   onLaunch: function (options) {
     var that = this
@@ -46,7 +47,8 @@ App({
               code: res.code
             }, success: function (obj) {
               that.globalData.access_token = obj.data.access_token
-              // that.globalData.employId = obj.employId
+              // 回调方法
+              that.globalData.employId = obj.employId
               if (that.employIdCallback) {
                 that.employIdCallback()
               }
@@ -71,6 +73,7 @@ App({
     wx.showShareMenu({
       withShareTicket: true
     })
+    that.globalData.shareTicket = options.shareTicket
     if (options.scene == 1044) {
       wx.getShareInfo({
         shareTicket: options.shareTicket,
@@ -78,9 +81,9 @@ App({
           that.globalData.shareEncryptedData = res.encryptedData
           that.globalData.shareIv = res.iv
           // 回调方法
-          if (that.employIdCallback) {
-            that.employIdCallback(res)
-          }
+          // if (that.employIdCallback) {
+          //   that.employIdCallback(res)
+          // }
         }
       })
     }

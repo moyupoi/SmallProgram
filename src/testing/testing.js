@@ -27,23 +27,6 @@ Page({
     //     }
     //   }
     // }
-
-    // 页面初始化 options为页面跳转所带来的参数
-    //动态设置画布大小
-    // var size = this.setCanvasSize()
-    // wx.getUserInfo({
-    //   success:function(res){
-    //     wx.getImageInfo({
-    //       src: res.userInfo.avatarUrl,
-    //       success:function(res){
-    //         that.setData({
-    //           avatarUrl: res.path
-    //         })
-    //         // that.createNewImg();
-    //       }
-    //     })
-    //   }
-    // })
   },
   loadInit: function () {
     var that = this
