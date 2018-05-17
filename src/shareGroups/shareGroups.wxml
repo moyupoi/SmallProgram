@@ -1,0 +1,17 @@
+<view class="home">
+  <view class="banner">
+    <open-data type="userAvatarUrl" class="portrait"></open-data>
+    <open-data type="userNickName" class="userName"></open-data>
+  </view>
+  <view class="groupsInit">
+    <view class="comparison" wx:for="{{userShareGroupsList}}" wx:key="index">
+      <view class="userGroup">
+        <open-data type="userAvatarUrl" open-gid="{{item.open_gid}}" class="groupPortrait"></open-data>
+        <view>
+          <open-data type="groupName" open-gid="{{item.open_gid}}" class="groupName"></open-data>
+          <open-data type="userNickName" open-gid="{{item.open_gid}}" class="groupNickName"></open-data>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

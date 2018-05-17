@@ -3,59 +3,41 @@ const app = getApp()
 
 Page({
   data: {
-    isAccess_token: true,
-    portraitPath: '',
     rankings: true,
-    rankingsList: [],
-    userShareGroupsList: [],
-    cccc: false
+    userShareGroupsList: []
+    // rankingsList: []
   },
   onLoad: function (options) {
     var that = this
-    // 埋点
-    wx.reportAnalytics('page_view', {
-      page_view_name: '首页'
-    })
     if (app.employIdCallback) {
-      this.setData({
-        isAccess_token: false
-      })
       that.loginUserShareGroups()
     } else {
       app.employIdCallback = res => {
-        this.setData({
-          isAccess_token: false
-        })
         that.loginUserShareGroups()
-        if (app.globalData.shareEncryptedData != '') {
-          that.uploadGroupInfo(res.encryptedData, res.iv)
-        }
+        // if (app.globalData.shareEncryptedData != '') {
+        //   that.uploadGroupInfo(res.encryptedData, res.iv)
+        // }
       }
     }
+
   },
-  // 分享
-  onShareAppMessage: function (res) {
-    var that = this
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-    return {
-      title: '牛逼死了',
-      path: 'src/home/home?id=hahah',
-      success: function(res) {
-        // 转发成功
-        wx.getShareInfo({
-          shareTicket: res.shareTickets[0],
-          success: function(res){
-            that.uploadGroupInfo(res.encryptedData, res.iv)
-          }
-        })
+  // 解析
+  uploadWechat: function (encryptedData, iv) {
+    wx.request({
+      url: config.host + '/v1/users/upload_wechat_userinfo',
+      method: 'POST',
+      header: {
+        'Authorization': app.globalData.access_token,
+        'Content-Type': 'application/json'
       },
-      fail: function(res) {
-        // 转发失败
+      data: JSON.stringify({
+        'encryptedData': encryptedData,
+        'iv': iv
+      }),
+      success: function (obj) {
+        console.log(data)
       }
-    }
+    })
   },
   // 解析信息
   uploadGroupInfo: function (encryptedData, iv) {
@@ -72,11 +54,12 @@ Page({
         'iv': iv
       }),
       success: function (obj) {
+        console.log(obj.data)
         that.userShareGroups(obj.data.open_gid)
       }
     })
   },
-  // 获取排行榜人员信息
+  // 获取排行榜
   userShareGroups: function (openGid) {
     var that = this
     console.log(openGid)
@@ -91,11 +74,12 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        that.setData({
-          rankings: !res.data.is_has_test,
-          cccc: true
-        })
+        // debugger
+        // that.setData({
+        //   rankings: res.data.is_has_test
+        // })
         console.log(res)
+        debugger
         let userList = []
         if (res.data.users != undefined && res.data.users.length > 0) {
           res.data.users.map((item, i) => {
@@ -103,13 +87,13 @@ Page({
               userList.push(item)
             }
           })
+          // that.setData({
+          //   rankingsList: userList
+          // })
         }
-        that.setData({
-          rankingsList: userList
-        })
-        console.log(that.data.rankingsList)
       },
       fail: function(res) {
+        debugger
       }
     })
   },
@@ -124,32 +108,11 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        if (res.data.user_share_groups.length > 0) {
-          that.setData({
-            rankings: false
-          })
-          // 这里调用加载群用户信息
-          // that.xxxxx(res.data.user_share_groups[res.data.user_share_groups.length - 1])
-        }
         that.setData({
           userShareGroupsList: res.data.user_share_groups
         })
+        console.log(res)
       }
-    })
-  },
-  toTesting: function () {
-    wx.navigateTo({
-      url:'/src/testing/testing'
-    })
-  },
-  toBankList: function () {
-    wx.navigateTo({
-      url:'/src/bankList/bankList'
-    })
-  },
-  group: function () {
-    wx.navigateTo({
-      url:'/src/shareGroups/shareGroups'
     })
   }
 })

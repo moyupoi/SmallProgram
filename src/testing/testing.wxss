@@ -19,12 +19,100 @@ page {
   text-align: left;
   margin-bottom: 40rpx;
 }
-button {
-  background: #00DBB2;
+.testing .selCar .title {
+  display: block;
+  color: #666B6B;
+}
+.testing .selCar label {
+  width: 555rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: block;
+  font-size: 28rpx;
+  color: #666B6B;
+  border-radius: 10rpx;
+  background: #fff;
+  margin: 0 auto 40rpx auto;
+}
+.testing .selCar {
+  text-align: center;
+}
+.testing .selCar .isChecked {
   color: #fff;
-  font-weight: 400;
-  width: 280rpx;
-  border-radius: 50rpx;
-  border: 0;
+  background: #00DBB2;
+}
+.page {
+  text-align: center;
+}
+.page button {
   margin-top: 50rpx;
+  width: 255rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 50rpx;
+  color: #fff;
+  background: #00DBB2;
+  display: inline-block;
+}
+.page .previous {
+  margin-right: 20rpx;
+}
+
+.mask {
+  position: fixed;top: 0;left: 0; width: 100%;height: 100%;opacity: 0; display: flex;justify-content: center; align-items: center;
+}
+.canvasBox {
+  position: fixed;
+  top: 999999rpx;
+  left: 0;
+}
+.canvasBox canvas {
+  background: #fff;
+}
+.pictureDisplay {
+  position: relative;
+}
+.pictureDisplay .saveImg {
+  display: block;
+  width: 720rpx;
+  height: 1100rpx;
+  margin: 20rpx auto;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.pictureDisplay .getUser {
+  width: 200rpx;
+  height: 60rpx;
+  background: #00C9A4;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  font-weight: 600;
+}
+.pictureDisplay .btnImg {
+  width: 200rpx;
+  height: 60rpx;
+  background: #00C9A4;
+  color: #fff;
+  position: absolute;
+  bottom: 20rpx;
+  left: 265rpx;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  font-weight: 600;
+  z-index: 99999;
+}
+.pk {
+  width: 720rpx;
+  height: 90rpx;
+  background: #FFF;
+  color: #00C9A4;
+  border-radius: 50rpx;
+  border: 1rpx solid #00C9A4;
+  font-size: 30rpx;
+  line-height: 90rpx;
+  margin-bottom: 40rpx;
+  text-align: center;
 }

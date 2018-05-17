@@ -7,4 +7,4 @@
   <image src='{{imagePath}}' class="saveImg"></image>
   <button bindtap='previewImg' class="btnImg">点击分享</button>
 </view>
-<button class="pk">发起群PK</button>
+<button class="pk" open-type="share">发起群PK</button>

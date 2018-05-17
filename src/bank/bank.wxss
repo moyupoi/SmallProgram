@@ -2,7 +2,7 @@ page {
   background: #F2F2F2;
 }
 .bankContainer {
-
+  overflow: hidden;
 }
 .bankContainer .selectType {
   text-align: center;
@@ -20,7 +20,6 @@ page {
 }
 .bankContainer .cardList {
   display: block;
-  margin-bottom: 90rpx;
 }
 .cardItem {
   display: block;
@@ -79,16 +78,15 @@ page {
   border: 0;
 }
 .selectCardBtn {
-  position: fixed;
   width: 700rpx;
-  height: 70rpx;
+  height: 80rpx;
   background: #00DBB2;
   color: #fff;
   font-size: 28rpx;
-  line-height: 70rpx;
+  line-height: 80rpx;
   border: 0;
   border-radius: 50rpx;
-  bottom: 10rpx;
-  left: 40rpx;
   text-align: center;
+  display: block;
+  margin: 40rpx auto;
 }

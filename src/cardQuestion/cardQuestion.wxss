@@ -68,3 +68,97 @@ page {
 .page .previous {
   margin-right: 20rpx;
 }
+.recommendCard {
+  overflow: hidden;
+}
+.recommendCard .title {
+  margin: 20rpx auto 20rpx auto;
+  display: block;
+  text-align: center;
+  font-size: 35rpx;
+  color: #666B6B;
+}
+.recommendCard .subtitle {
+  font-size: 28rpx;
+  margin: 20rpx 0 20rpx 30rpx;
+  color: #666B6B;
+  background: #F2F2F2;
+  display: block;
+}
+.cardItem {
+  display: block;
+  padding: 20rpx 20rpx 20rpx 30rpx;
+  border-bottom: 1rpx solid #ccc;
+  overflow: hidden;
+  background: #fff;
+}
+.cardItem .quota {
+  float: left;
+  width: 330rpx;
+}
+.cardItem .describe {
+  float: left;
+  width: 350rpx;
+}
+.cardItem .quota image {
+  width: 300rpx;
+  height: 200rpx;
+  display: block;
+}
+.cardItem .quota text {
+  font-size: 24rpx;
+}
+.cardItem .quota text:nth-of-type(2) {
+  color: red;
+}
+.cardItem .describe text {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  font-size: 32rpx;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.cardItem .describe label {
+  color: #000;
+  font-size: 20rpx;
+  border: 1rpx solid #999999;
+  padding: 2rpx 10rpx;
+  border-radius: 10rpx;
+  display: inline-block;
+  margin-right: 5rpx;
+}
+.cardItem .describe label:nth-of-type(1) {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #999;
+  margin-top: 10rpx;
+  height: 100rpx;
+  border: 0;
+}
+.recommendBtn {
+  height: 80rpx;
+}
+.recommendBtn button {
+  width:  50%;
+  height: 80rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  color: #fff;
+  background: #00DBB2;
+  border: 0  !important;
+  border-radius: 0 !important;
+  border-style: none;
+  display: inline-block;
+  border: 0;
+}
+.recommendBtn button:nth-of-type(1) {
+  background: #fff;
+  color: #00DBB2;
+}

@@ -11,9 +11,6 @@ Page({
     indicatorDots: true
   },
   onLoad: function(options) {
-    this.setData({
-      title: options.title
-    })
     var that = this
     if (app.employIdCallback) {
       that.loadInit()
@@ -39,7 +36,6 @@ Page({
           movies: res.data.bank_cards,
           themeCard: res.data.bank_card_themes
         })
-        console.log(res.data)
       }
     })
   },

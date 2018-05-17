@@ -1,42 +1,20 @@
 {
   "pages": [
-    "src/bankList/bankList",
-    "src/bank/bank",
-
-    "src/cardQuestion/cardQuestion",
-
     "src/home/home",
-    "src/screenshot/screenshot",
+    "src/shareGroups/shareGroups",
+
+    "src/bankList/bankList",
+    "src/cardQuestion/cardQuestion",
     "src/testing/testing",
-    "src/index/index",
-    "src/logs/logs"
+    "src/bank/bank",
+    "src/screenshot/screenshot"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00DBB2",
-    "navigationBarTitleText": "网利金融",
+    "navigationBarTitleText": "魔卡多",
     "navigationBarTextStyle": "white",
+    "navigationStyle": "default",
     "onReachBottom": true
-  },
-  "tabBar": {
-    "borderStyle": "#fff",
-    "backgroundColor": "#fff",
-    "color": "#000",
-    "selectedColor": "#ccc",
-    "position": "bottom",
-    "list": [
-      {
-        "pagePath": "src/index/index",
-        "text": "发红包"
-      },
-      {
-        "pagePath": "src/index/index",
-        "text": "抢红包"
-      },
-      {
-        "pagePath": "src/logs/logs",
-        "text": "我的红包"
-      }
-    ]
   }
 }

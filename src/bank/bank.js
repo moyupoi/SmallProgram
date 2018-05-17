@@ -9,7 +9,7 @@ Page({
     themeArray: [],
     bankArrayIndex: 0,
     themeArrayIndex: 0,
-    parPage: 4,
+    parPage: 10,
     page: 1,
     bankCards: [],
     hasMoreData: true
@@ -53,7 +53,6 @@ Page({
         // debugger
         if (page > 1) {
           bankCards = that.data.bankCards.concat(bankCards)
-          console.log(bankCards)
           that.setData({
             bankCards: bankCards,
             page: that.data.page + 1
@@ -84,7 +83,7 @@ Page({
   },
   onReachBottom: function () {
     wx.showToast({
-      title: "正在刷新数据",
+      title: "正在加载更多",
     })
     var themen = this.data.themeArrayIndex ? this.data.themeArrayIndex : ''
     this.loadInit(this.data.parPage, this.data.page + 1, this.data.bankArray[this.data.bankArrayIndex].id, themen)

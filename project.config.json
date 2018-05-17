@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.7.4",
+	"libVersion": "1.9.98",
 	"appid": "wx18543dc90827b752",
 	"projectname": "卡趣",
 	"condition": {

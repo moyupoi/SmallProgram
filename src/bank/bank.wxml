@@ -8,7 +8,7 @@
     </picker>
   </view>
   <view class="cardList">
-    <navigator url="" hover-class="none" class="cardItem" wx:for="{{bankCards}}" wx:key="index">
+    <view class="cardItem" wx:for="{{bankCards}}" wx:key="index">
       <view class="quota">
         <image src="{{item.image_url}}"></image>
         <text>最高额度: </text>
@@ -21,7 +21,7 @@
           <label class="type">{{tag}}</label>
         </block>
       </view>
-    </navigator>
+    </view>
   </view>
   <navigator url="/src/cardQuestion/cardQuestion" hover-class="none" class="selectCardBtn">选卡太纠结？点我</navigator>
 </view>

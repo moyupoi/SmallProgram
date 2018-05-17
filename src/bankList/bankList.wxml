@@ -2,7 +2,7 @@
   <text class="title">{{bankListText}}</text>
   <swiper class="bankList" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}">
     <swiper-item class="cardItem" wx:for="{{movies}}" wx:key="index">
-      <navigator url="/src/bank/bank" hover-class="none">
+      <view>
         <view class="quota">
           <image src="{{item.image_url}}"></image>
           <text>最高额度: </text>
@@ -11,9 +11,11 @@
         <view class="describe">
           <text>{{item.name}}</text>
           <label>{{item.description}}</label>
-          <label class="type">{{item.tags}}</label>
+          <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+            <label class="type">{{tag}}</label>
+          </block>
         </view>
-      </navigator>
+      </view>
     </swiper-item>
   </swiper>
   <label class="title">{{themeCardText}}</label>
@@ -22,7 +24,7 @@
       <view class="cover">
         <label>{{item.value}}</label>
       </view>
-      <image src=""></image>
+      <image src="{{item.image_url}}"></image>
     </navigator>
   </view>
 </view>

@@ -25,6 +25,46 @@
     </view>
   </view>
   <view class="recommendCard" hidden="{{question}}">
-    传销洗脑已经完成了一半，加油发送给自己的损友
+    <text class="title">
+      根据您的选择为您推荐
+    </text>
+    <label class="subtitle">最佳匹配</label>
+    <view>
+      <view class="cardItem" wx:for="{{bestRecommends}}" wx:key="index">
+        <view class="quota">
+          <image src="{{item.image_url}}"></image>
+          <text>最高额度: </text>
+          <text>{{item.max_amount}}</text>
+        </view>
+        <view class="describe">
+          <text>{{item.name}}</text>
+          <label>{{item.description}}</label>
+          <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+            <label class="type">{{tag}}</label>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="subtitle">其他匹配</view>
+    <view>
+      <view class="cardItem" wx:for="{{otherRecommends}}" wx:key="index">
+        <view class="quota">
+          <image src="{{item.image_url}}"></image>
+          <text>最高额度: </text>
+          <text>{{item.max_amount}}</text>
+        </view>
+        <view class="describe">
+          <text>{{item.name}}</text>
+          <label>{{item.description}}</label>
+          <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+            <label class="type">{{tag}}</label>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="recommendBtn">
+      <button bindtap="returnBtn">返回</button>
+      <button bindtap="resetBtn">再选一次</button>
+    </view>
   </view>
 </view>
