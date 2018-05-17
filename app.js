@@ -68,7 +68,6 @@ App({
   },
   onShow: function (options) {
     var that = this
-    console.log('APP.js onShow')
     // 分享获取群信息
     wx.showShareMenu({
       withShareTicket: true

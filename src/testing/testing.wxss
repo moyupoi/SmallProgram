@@ -71,14 +71,17 @@ page {
 }
 .pictureDisplay {
   position: relative;
+  height: 900rpx;
+  overflow: hidden;
+  margin-bottom: 90rpx;
 }
 .pictureDisplay .saveImg {
   display: block;
-  width: 720rpx;
-  height: 1100rpx;
+  width: 650rpx;
+  height: 1200rpx;
   margin: 20rpx auto;
   background: #fff;
-  border-radius: 20rpx;
+  /* border-radius: 20rpx; */
 }
 .pictureDisplay .getUser {
   width: 200rpx;
@@ -90,29 +93,31 @@ page {
   line-height: 60rpx;
   font-weight: 600;
 }
-.pictureDisplay .btnImg {
-  width: 200rpx;
-  height: 60rpx;
-  background: #00C9A4;
-  color: #fff;
-  position: absolute;
-  bottom: 20rpx;
-  left: 265rpx;
-  border-radius: 50rpx;
-  font-size: 30rpx;
-  line-height: 60rpx;
-  font-weight: 600;
-  z-index: 99999;
+.shareView {
+  text-align: center;
+  overflow: hidden;
 }
 .pk {
-  width: 720rpx;
-  height: 90rpx;
+  width: 260rpx;
+  height: 70rpx;
   background: #FFF;
   color: #00C9A4;
   border-radius: 50rpx;
   border: 1rpx solid #00C9A4;
   font-size: 30rpx;
-  line-height: 90rpx;
-  margin-bottom: 40rpx;
+  line-height: 70rpx;
   text-align: center;
+  display: inline-table;
+}
+.btnImg {
+  width: 260rpx;
+  height: 70rpx;
+  background: #00C9A4;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  line-height: 70rpx;
+  font-weight: 600;
+  display: inline-table;
+  margin-right: 20rpx;
 }

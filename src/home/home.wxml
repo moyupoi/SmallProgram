@@ -21,7 +21,7 @@
         </view>
       </view>
     </view>
-    <button bindtap="toTesting" class="testing" hidden="{{isAccess_token}}">
+    <button bindtap="toTesting" class="testing">
       测测我的信用指数
     </button>
     <view hidden="{{rankings}}">

@@ -5,13 +5,13 @@
   </view>
   <view class="groupsInit">
     <view class="comparison" wx:for="{{userShareGroupsList}}" wx:key="index">
-      <view class="userGroup">
+      <navigator url="/src/home/home?open_gid={{item.open_gid}}" hover-class="none" class="userGroup">
         <open-data type="userAvatarUrl" open-gid="{{item.open_gid}}" class="groupPortrait"></open-data>
         <view>
           <open-data type="groupName" open-gid="{{item.open_gid}}" class="groupName"></open-data>
           <open-data type="userNickName" open-gid="{{item.open_gid}}" class="groupNickName"></open-data>
         </view>
-      </view>
+      </navigator>
     </view>
   </view>
 </view>

@@ -49,7 +49,6 @@ Page({
         that.setData({
           userShareGroupsList: res.data.user_share_groups
         })
-        console.log(res)
       }
     })
   }

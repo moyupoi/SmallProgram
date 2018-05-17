@@ -9,19 +9,21 @@
   </view>
   <view class="page">
     <button class="previous" style="display:{{creditAmountIndex != 0 ? 'inline-block' : 'none' }}" bindtap="bindPrevious">上一步</button>
-    <button class="next" bindtap="bindNext" hidden="{{!isUserInfo}}">下一题</button>
-    <button open-type="getUserInfo" bindgetuserinfo='bindNext' class="getUser" hidden="{{isUserInfo}}">生成分享图片</button>
+    <button class="next" bindtap="bindNext" wx:if="{{isUserInfo}}">下一题</button>
+    <button open-type="getUserInfo" bindgetuserinfo='bindNext' class="getUser" hidden="{{isUserInfo}}">生成图片</button>
   </view>
 </view>
 <view hidden="{{question}}">
   <view hidden="{{maskHidden}}" class="mask"></view>
   <!-- <button bindtap="createNewImg">点击</button> -->
   <view class='canvasBox'>
-    <canvas style="width:1440rpx; height:2200rpx;" canvas-id="myCanvas"/>
+    <canvas style="width:1300rpx; height:2400rpx;" canvas-id="myCanvas"/>
   </view>
   <view class="pictureDisplay">
     <image src='{{imagePath}}' class="saveImg"></image>
-    <button bindtap='previewImg' class="btnImg">点击分享</button>
   </view>
-  <navigator url="/src/home/home" hover-class="none" class="pk">发起群PK</navigator>
+  <view class="shareView">
+    <button bindtap='previewImg' class="btnImg">保存图片</button>
+    <navigator url="/src/home/home" hover-class="none" class="pk">发起群PK</navigator>
+  </view>
 </view>

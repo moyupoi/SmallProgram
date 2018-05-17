@@ -12,6 +12,7 @@ Page({
   },
   onLoad: function (options) {
     var that = this
+
     // 埋点
     wx.reportAnalytics('page_view', {
       page_view_name: '首页'
@@ -50,7 +51,9 @@ Page({
                 })
                 // 搜索进入的用户
                 that.loginUserShareGroups()
-                if (app.globalData.shareEncryptedData && app.globalData.shareIv) {
+                if (options.open_gid) {
+                  that.getGroupsInfo(options.open_gid)
+                } else if (app.globalData.shareEncryptedData && app.globalData.shareIv) {
                   // 打开群分享链接进入的用户
                   that.uploadGroupInfo(app.globalData.shareEncryptedData, app.globalData.shareIv)
                 }
@@ -71,7 +74,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '牛逼死了',
+      title: '魔卡多',
       path: 'src/home/home?id=hahah',
       success: function(res) {
         // 转发成功
@@ -113,7 +116,7 @@ Page({
       url: config.host + '/v1/user_share_groups/top',
       method: 'GET',
       data: {
-        'open_gid': 'G7YYY42LEWDz-4JNnSCwvJ621dP0'//openGid
+        'open_gid': openGid
       },
       header: {
         'Authorization': that.data.access_token,

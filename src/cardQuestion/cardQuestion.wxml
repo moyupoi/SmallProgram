@@ -28,7 +28,7 @@
     <text class="title">
       根据您的选择为您推荐
     </text>
-    <label class="subtitle">最佳匹配</label>
+    <label class="subtitle" wx:if="{{bestRecommends.length > 0}}">最佳匹配</label>
     <view>
       <view class="cardItem" wx:for="{{bestRecommends}}" wx:key="index">
         <view class="quota">
@@ -45,7 +45,7 @@
         </view>
       </view>
     </view>
-    <view class="subtitle">其他匹配</view>
+    <view class="subtitle" wx:if="{{otherRecommends.length > 0}}">其他匹配</view>
     <view>
       <view class="cardItem" wx:for="{{otherRecommends}}" wx:key="index">
         <view class="quota">

@@ -46,7 +46,7 @@ page {
   background: #00DBB2;
   color: #fff;
   font-weight: 400;
-  width: 500rpx;
+  width: 650rpx;
   border-radius: 50rpx;
   border: 0;
   margin-top: 40rpx;

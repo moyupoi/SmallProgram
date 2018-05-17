@@ -2,10 +2,9 @@
   "pages": [
     "src/home/home",
     "src/shareGroups/shareGroups",
-
+    "src/testing/testing",
     "src/bankList/bankList",
     "src/cardQuestion/cardQuestion",
-    "src/testing/testing",
     "src/bank/bank",
     "src/screenshot/screenshot"
   ],

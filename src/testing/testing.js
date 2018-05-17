@@ -9,24 +9,41 @@ Page({
     page: '',
     question: true,
     imagePath: "",
-    imageBanner: "/layouts/assets/images/bankcard.png",
     maskHidden: true,
-    avatarUrl: "",
-    sentence: "像你这样优秀温婉不败的小姐姐，信用卡可以换一座紫禁城~~@_@就是，你还缺男朋友吗？介不介意换一个？",
-    position: "1.18"
+    // avatarUrl: "./images/tx.png",
+    copywriting: "看到了你的爱马仕@_@也看到了你美丽的人生",
+    // copywriting: "看到了你的爱马仕",
+    userName: '墨鱼卷',
+    answersData: '',
+    position: "1.1"
   },
   onLoad: function (options) {
     var that = this
-    that.loadInit()
-    // if (app.employIdCallback) {
-    //   that.loadInit(that.data.parPage, that.data.page, '', that.data.themeArrayIndex)
-    // } else {
-    //   app.employIdCallback = employId => {
-    //     if (employId != '') {
-    //       that.loadInit(that.data.parPage, that.data.page, '', that.data.themeArrayIndex)
-    //     }
-    //   }
-    // }
+    wx.login({
+      success: res => {
+        if (res.code) {
+          wx.request({
+            url: config.host + '/v1/users/wechat_login',
+            method: 'POST',
+            data: {
+              code: res.code
+            }, success: function (res) {
+              that.setData({
+                access_token: res.data.access_token
+              })
+              if (res.data.access_token != '') {
+                that.setData({
+                  rankings: true
+                })
+                that.loadInit()
+                // that.answers()
+              }
+            }
+          })
+        } else {}
+      },
+      fail: res => {}
+    })
   },
   loadInit: function () {
     var that = this
@@ -100,7 +117,7 @@ Page({
         }
       }
     }
-    if (that.data.creditAmountIndex == listLength - 1) {
+    if (that.data.creditAmountIndex == listLength - 1 && isTrue) {
       that.setData({
         isUserInfo: false
       })
@@ -108,7 +125,8 @@ Page({
     if (that.data.creditAmountIndex == listLength && that.data.creditAmountTest != '' && isTrue) {
       if (e.detail.userInfo) {
         that.setData({
-          avatarUrl: e.detail.userInfo.avatarUrl
+          avatarUrl: e.detail.userInfo.avatarUrl,
+          userName: e.detail.userInfo.nickName
         })
         var resultArr = []
         var sct = that.data.creditAmountTest
@@ -140,7 +158,7 @@ Page({
             }
           }
         })
-        that.createNewImg()
+        that.answers()
       }
     } else if (that.data.creditAmountIndex < listLength && isTrue) {
       that.setData({
@@ -154,17 +172,40 @@ Page({
      })
     }
   },
+  answers: function () {
+    var that = this
+    wx.request({
+      url: config.host + '/v1/answers/recommend',
+      method: 'GET',
+      header: {
+        'Authorization': app.globalData.access_token,
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          answersData: res.data
+        })
+        that.dowFile(res.data.image_url)
+        // that.createNewImg()
+      }
+    })
+  },
   //适配不同屏幕大小的canvas    生成的分享图宽高分别是 750  和940，老实讲不知道这块到底需不需要，然而。。还是放了，因为不写这块的话，模拟器上的图片大小是不对的。。。
   setCanvasSize: function () {
     var size = {}
     try {
       var res = wx.getSystemInfoSync()
-      var scale = 1440//画布宽度
-      var scaleH = 1880 / 1440//生成图片的宽高比例
+      var scale = 1300//画布宽度
+      var scaleH = 2400 / 1300//生成图片的宽高比例
       var width = res.windowWidth//画布宽度
       var height = res.windowWidth * scaleH//画布的高度
       size.w = width
       size.h = height
+      // var res = wx.getSystemInfoSync()
+      // var width = (res.windowWidth - 40) * 2
+      // var height = res.windowHeight
+      // size.w = width
+      // size.h = height
     } catch (e) {
       // Do something when catch error
       // console.log("获取设备信息失败" + e)
@@ -175,24 +216,37 @@ Page({
   settextSentence: function (context) {
     let that=this
     var size = that.setCanvasSize()
-    var sentence = this.data.sentence
-    if (sentence.length > 15) {
-      let arr = this.data.sentence.split("@_@")
+    // 绘制文字
+    var description = this.data.answersData.description
+    var userName = this.data.userName
+    var copywriting = this.data.copywriting
+    if (copywriting.length > 15) {
+      let arr = this.data.copywriting.split("@_@")
       if (arr.length > 0) {
         for (var i = 0;i < arr.length;i++) {
           that.changeLine(arr[i], size, context)
           that.setData({
-            position: parseFloat(that.data.position) + 0.1
+            position: parseFloat(that.data.position) + 0.09
           })
         }
       }
     } else {
       context.setFontSize(30)
+      context.setFillStyle("#ffffff")
       context.setTextAlign("center")
-      context.setFillStyle("#666666")
-      context.fillText(sentence, size.w, size.h * 1.3)
-      context.stroke()
+      context.fillText(that.data.copywriting, size.w * 0.82, size.h * 1.1)
     }
+    context.setFontSize(40)
+    context.setFillStyle("#27303A")
+    context.setTextAlign("center")
+    context.fillText(userName, size.w * 0.82, size.h * 0.15)
+
+    context.setFontSize(30)
+    context.setFillStyle("#27303A")
+    context.setTextAlign("center")
+    context.font = "bold"
+    context.fillText(description, size.w * 0.85, size.h * 0.25)
+    context.stroke()
   },
   //将2绘制到canvas的固定
   // settextDescribe: function (context) {
@@ -210,14 +264,20 @@ Page({
     var that = this
     var size = that.setCanvasSize()
     var context = wx.createCanvasContext('myCanvas')
-    var path = "/layouts/assets/images/bankcard.png"
-    var imageBanner = that.data.imageBanner
+    // 展示图
+    var backImg = that.data.answersData.image_url
+    // 小程序二维码
+    var miniprogram = that.data.answersData.miniprogram_url
     var avatarUrl = that.data.avatarUrl
     var imageZw = "/layouts/assets/images/bankcard.png"
     context.setFillStyle('#ffffff')
-    context.fillRect(0, 0, size.w * 2, size.h * 3)
-    context.drawImage(imageBanner, 0, 0, 800, 400)
-    context.drawImage(avatarUrl, size.w / 2 + 80, size.h * 0.76, 160, 160)
+    context.fillRect(0, 0, size.w * 2, size.h * 2)
+    context.setFillStyle('#27303A')
+    context.fillRect(0, size.h * 1, size.w * 1.8, size.h * 0.3)
+    context.drawImage(backImg, size.w * 0.25, size.h * 0.35, size.w * 1.2, size.h * 0.5)
+    context.drawImage(miniprogram, size.w * 0.45, size.h * 1.33, size.w * 0.8, size.h * 0.40)
+
+    // context.drawImage(avatarUrl, size.w / 2 + 80, size.h * 0.76, 160, 160)
     // 绘制圆
     // this.circleImg(context, avatarUrl, size.w / 2 - 60, size.h * 0.32, 30, 0)
     // context.drawImage(imageZw, size.w / 2 - 25, size.h * 0.7, size.w * 0.14, size.w * 0.14)
@@ -277,30 +337,69 @@ Page({
     for (var i = 0; i < Math.ceil(num); i++) {
       context.setFontSize(30)
       context.setTextAlign("center")
-      context.setFillStyle("#666666")
+      context.setFillStyle("#ffffff")
       context.font = "30px Heiti SC"
-      context.fillText(text.substr(subnum, page), size.w -20, size.h * that.data.position)
+      context.fillText(text.substr(subnum, page), size.w - 50, size.h * that.data.position)
       context.stroke()
       that.setData({
-        position: parseFloat(that.data.position) + 0.1
+        position: parseFloat(that.data.position)
       })
       subnum += page
     }
   },
   previewImg: function (e) {
     var img = this.data.imagePath
-    wx.previewImage({
-      current: img, // 当前显示图片的http链接
-      urls: [img] // 需要预览的图片http链接列表
+    // wx.downloadFile({
+    //   url: img, //仅为示例，并非真实的资源
+    //   success: function(res) {
+    //     if (res.statusCode === 200) {
+    //       wx.playVoice({
+    //         filePath: res.tempFilePath
+    //       })
+    //     }
+    //   }
+    // })
+
+    wx.getImageInfo({
+      src: img,
+      success: function(res) {
+        var path = res.path
+        wx.saveImageToPhotosAlbum({
+            filePath: path,
+            success(result) {
+              wx.showToast({
+                title: '图片保存成功',
+                icon: 'success'
+              })
+            }
+        })
+      }
     })
+
+    // wx.previewImage({
+    //   current: img, // 当前显示图片的http链接
+    //   urls: [img] // 需要预览的图片http链接列表
+    // })
   },
   getUser: function () {
-    // debugger
     wx.getUserInfo({
       success: res => {
         that.setData({
           isUserInfo: true
         })
+      }
+    })
+  },
+  dowFile: function (url) {
+    wx.downloadFile({
+      url: url,
+      success: function(res) {
+        if (res.statusCode === 200) {
+          wx.playVoice({
+            filePath: res.tempFilePath
+          })
+          debugger
+        }
       }
     })
   }
