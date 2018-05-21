@@ -179,5 +179,27 @@ Page({
       otherRecommends: []
     })
     this.loadInit()
+  },
+  cardItem: function (e) {
+    wx.showActionSheet({
+      itemList: ['卡片地址复制到剪切板'],
+      success: function(res) {
+        if (res.tapIndex == 0) {
+          wx.setClipboardData({
+            data: e.currentTarget.dataset.url,
+            success: function(res) {
+              wx.getClipboardData ({
+                success: function(res) {
+                  wx.showToast({
+                    title: "复制专属链接在浏览器打开",
+                  })
+                }
+              })
+            }
+          })
+        }
+      },
+      fail: function(res) {}
+    })
   }
 })

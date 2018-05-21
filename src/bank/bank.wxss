@@ -22,10 +22,7 @@ page {
   display: block;
 }
 .cardItem {
-  display: block;
-  padding: 20rpx 20rpx 20rpx 30rpx;
-  border-bottom: 1rpx solid #ccc;
-  overflow: hidden;
+
 }
 .cardItem .quota {
   float: left;
@@ -89,4 +86,10 @@ page {
   text-align: center;
   display: block;
   margin: 40rpx auto;
+}
+.cardsQuota {
+  display: block;
+  padding: 20rpx 20rpx 20rpx 30rpx;
+  border-bottom: 1rpx solid #ccc;
+  overflow: hidden;
 }

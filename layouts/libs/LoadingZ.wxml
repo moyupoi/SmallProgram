@@ -1,0 +1,4 @@
+<view class="Loading">
+  <image src="/layouts/assets/images/LoadingBars.svg"></image>
+  <text>正在努力吃豆, 请耐心等待...</text>
+</view>

@@ -53,7 +53,7 @@ App({
                 that.employIdCallback()
               }
               if (that.globalData.encryptedData != '') {
-                that.uploadWechat(obj.data.access_token)
+                // that.uploadWechat(obj.data.access_token)
               }
             }
           })
@@ -86,22 +86,5 @@ App({
         }
       })
     }
-  },
-  uploadWechat: function (access_token) {
-    wx.request({
-      url: config.host + '/v1/users/upload_wechat_userinfo',
-      method: 'POST',
-      header: {
-        'Authorization': access_token,
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify({
-        'encryptedData': this.globalData.encryptedData,
-        'iv': this.globalData.iv
-      }),
-      success: function (obj) {
-        // console.log(data)
-      }
-    })
   }
 })

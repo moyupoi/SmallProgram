@@ -3,6 +3,7 @@ const app = getApp()
 
 Page({
   data: {
+    isFetching: true,
     bankName: '',
     imagePath: '',
     bankArray: [],
@@ -64,8 +65,6 @@ Page({
       },
       success: function (res) {
         var bankCards = res.data.bank_cards
-        // console.log(page)
-        // debugger
         if (page > 1) {
           bankCards = that.data.bankCards.concat(bankCards)
           that.setData({
@@ -76,7 +75,8 @@ Page({
           that.setData({
             bankArray: res.data.banks,
             themeArray: res.data.bank_card_themes,
-            bankCards: bankCards
+            bankCards: bankCards,
+            isFetching: false
           })
         }
       }
@@ -102,5 +102,27 @@ Page({
     })
     var themen = this.data.themeArrayIndex ? this.data.themeArrayIndex : ''
     this.loadInit(this.data.parPage, this.data.page + 1, this.data.bankArray[this.data.bankArrayIndex].id, themen)
+  },
+  cardItem: function (e) {
+    wx.showActionSheet({
+      itemList: ['卡片地址复制到剪切板'],
+      success: function(res) {
+        if (res.tapIndex == 0) {
+          wx.setClipboardData({
+            data: e.currentTarget.dataset.url,
+            success: function(res) {
+              wx.getClipboardData ({
+                success: function(res) {
+                  wx.showToast({
+                    title: "复制专属链接在浏览器打开",
+                  })
+                }
+              })
+            }
+          })
+        }
+      },
+      fail: function(res) {}
+    })
   }
 })

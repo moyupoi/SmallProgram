@@ -1,43 +1,58 @@
-<view class="home">
+<include src="/layouts/libs/LoadingZ.wxml" wx:if="{{isFetching}}" />
+<view class="home" wx:if="{{!isFetching}}">
   <view class="banner">
     <open-data type="userAvatarUrl" class="portrait"></open-data>
     <open-data type="userNickName" class="userName">{{ccc}}</open-data>
   </view>
   <view class="content">
-    <view class="describe" hidden="{{!rankings}}">
+    <view class="describe" hidden="{{isDefault}}">
       <text>暂无好友参与 \n做一个勇于尝试的人吧</text>
     </view>
-    <view class="rankings" wx:if="{{rankingsList.length > 0}}">
+    <view class="rankings" wx:if="{{rankingsList.length > 0}}" hidden="{{isRankings}}">
       <text class="title">群好友排行榜</text>
       <view class="slide" >
         <view class="rankingList" wx:for="{{rankingsList}}" wx:key="index">
           <view class="rankingItem">
+            <block wx:if="{{index == 0}}">
+              <image src="./images/ranking1.png" class="rankingImg"></image>
+            </block>
+            <block wx:elif="{{index == 1}}">
+              <image src="./images/ranking2.png" class="rankingImg"></image>
+            </block>
+            <block wx:elif="{{index == 2}}">
+              <image src="./images/ranking3.png" class="rankingImg"></image>
+            </block>
+            <block wx:else>
+              <image src="" class="rankingImg"></image>
+            </block>
             <image src="{{item.avatar_url}}" class="portrait"></image>
             <view>
               <text>{{item.name}}</text>
-              <text>{{item.answer_name}}</text>
+              <text>信用等价物是: {{item.answer_name}}</text>
             </view>
           </view>
         </view>
       </view>
     </view>
-    <button bindtap="toTesting" class="testing">
-      测测我的信用指数
-    </button>
-    <view hidden="{{rankings}}">
-      <button bindtap="group" class="group">
-        我参与的其他群
-      </button>
-      <button open-type="share" bindtap="groupPK" class="groupPK">
-        发起群PK
-      </button>
+    <view class="groupsInit" hidden="{{isGroupsInit}}">
+      <view class="comparison" wx:for="{{userShareGroupsList}}" wx:key="index">
+        <navigator url="/src/home/home?open_gid={{item.open_gid}}" hover-class="none" class="userGroup">
+          <open-data type="userAvatarUrl" open-gid="{{item.open_gid}}" class="groupPortrait"></open-data>
+          <view>
+            <open-data type="groupName" open-gid="{{item.open_gid}}" class="groupName"></open-data>
+            <text class="groupNickName">已有{{item.join_num}}人参加</text>
+          </view>
+        </navigator>
+      </view>
     </view>
+    <button bindtap="toTesting" class="testing" hidden="{{isTesting}}">测测我的信用等价物</button>
+    <button bindtap="group" class="group" hidden="{{isGroup}}">我参与的其他群</button>
+    <button bindtap="viewDrawing" class="viewDrawing" hidden="{{isViewDrawing}}">查看我的信用等价物</button>
+    <button open-type="share" class="groupPK" hidden="{{isGroupPK}}">发起群PK</button>
+    <!-- <view hidden="{{rankings}}"></view> -->
     <button bindtap="toBankList" class="toBankList">
-      <text>看看我的第一张信用卡</text>
-      <text>极大、大额、特权多</text>
+      <text>看看适合我的信用卡</text>
+      <text>极速、大额、特权多</text>
     </button>
-    <view class="reserve">
-
-    </view>
   </view>
 </view>

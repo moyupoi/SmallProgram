@@ -1,4 +1,5 @@
-<view class="bankContainer">
+<include src="/layouts/libs/LoadingZ.wxml" wx:if="{{isFetching}}" />
+<view class="bankContainer" wx:if="{{!isFetching}}">
   <view class="selectType">
     <picker mode="selector" range="{{bankArray}}" range-key="{{'name'}}" value="{{bankArrayIndex}}" bindchange="selectedBank" class="selectedBank">
       <text>{{bankArray[bankArrayIndex].name}}</text>
@@ -8,20 +9,22 @@
     </picker>
   </view>
   <view class="cardList">
-    <view class="cardItem" wx:for="{{bankCards}}" wx:key="index">
-      <view class="quota">
-        <image src="{{item.image_url}}"></image>
-        <text>最高额度: </text>
-        <text>{{item.max_amount}}</text>
+    <view class="cardItem" wx:for="{{bankCards}}" wx:key="index" data-url="{{item.apply_url}}">
+      <view class="cardsQuota" bindtap="cardItem">
+        <view class="quota">
+          <image src="{{item.image_url}}"></image>
+          <text>最高额度: </text>
+          <text>{{item.max_amount}}</text>
+        </view>
+        <view class="describe">
+          <text>{{item.name}}</text>
+          <label>{{item.description}}</label>
+          <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+            <label class="type">{{tag}}</label>
+          </block>
+        </view>
       </view>
-      <view class="describe">
-        <text>{{item.name}}</text>
-        <label>{{item.description}}</label>
-        <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
-          <label class="type">{{tag}}</label>
-        </block>
-      </view>
+      <navigator url="/src/cardQuestion/cardQuestion" wx:if="{{index==4}}" hover-class="none" class="selectCardBtn">选卡太纠结？点我</navigator>
     </view>
   </view>
-  <navigator url="/src/cardQuestion/cardQuestion" hover-class="none" class="selectCardBtn">选卡太纠结？点我</navigator>
 </view>

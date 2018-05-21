@@ -42,7 +42,7 @@ page {
   padding-top: 22rpx;
   margin-top: 40rpx;
 }
-.content .testing, .content .group, .content .groupPK {
+.content .testing, .content .group, .content .groupPK, .content .viewDrawing {
   background: #00DBB2;
   color: #fff;
   font-weight: 400;
@@ -117,7 +117,7 @@ page {
   width: 80rpx;
   height: 80rpx;
   display: inline-block;
-  margin-right: 15rpx;
+  margin-right: 30rpx;
   border-radius: 50rpx;
 }
 .rankings .rankingList .rankingItem view {
@@ -129,6 +129,9 @@ page {
   display: block;
   color: #7D7D7D;
   font-weight: 400;
+}
+.rankings .rankingList .rankingItem view text:nth-of-type(2) {
+  color: #333333;
 }
 .comparison {
   background: #fff;
@@ -156,5 +159,33 @@ page {
   color: #494949;
 }
 .comparison .userGroup view text:nth-of-type(1) {
+  margin-bottom: 10rpx;
+}
+.groupsInit {
+  padding: 20rpx 20rpx;
+}
+.comparison {
+  background: #fff;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+  padding: 20rpx 20rpx;
+}
+.comparison .userGroup .groupPortrait {
+  width: 90rpx;
+  height: 90rpx;
+  display: inline-block;
+  border-radius: 50rpx;
+  margin-right: 20rpx;
+}
+.comparison .userGroup view {
+  display: inline-block;
+  vertical-align: super;
+}
+.comparison .userGroup view .groupName, .comparison .userGroup view .groupNickName {
+  font-size: 26rpx;
+  display: block;
+  color: #494949;
+}
+.comparison .userGroup view .groupName {
   margin-bottom: 10rpx;
 }

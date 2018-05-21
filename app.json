@@ -1,11 +1,11 @@
 {
   "pages": [
     "src/home/home",
-    "src/shareGroups/shareGroups",
-    "src/testing/testing",
     "src/bankList/bankList",
-    "src/cardQuestion/cardQuestion",
     "src/bank/bank",
+    "src/testing/testing",
+    "src/shareGroups/shareGroups",
+    "src/cardQuestion/cardQuestion",
     "src/screenshot/screenshot"
   ],
   "window": {

@@ -34,7 +34,6 @@ Page({
     })
   },
   bindText: function() {
-    // debugger
     // this.setData({
     //   motto: '123'
     // })

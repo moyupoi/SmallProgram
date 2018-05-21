@@ -3,7 +3,9 @@ const app = getApp()
 
 Page({
   data: {
+    isFetching: true,
     isUserInfo: true,
+    isComplete: true,
     creditAmountTest: [],
     creditAmountIndex: 0,
     page: '',
@@ -11,11 +13,11 @@ Page({
     imagePath: "",
     maskHidden: true,
     // avatarUrl: "./images/tx.png",
-    copywriting: "看到了你的爱马仕@_@也看到了你美丽的人生",
-    // copywriting: "看到了你的爱马仕",
-    userName: '墨鱼卷',
+    userName: '',
     answersData: '',
-    position: "1.1"
+    position: "1.1",
+    miniprogramUrl: '',
+    imageUrl: ''
   },
   onLoad: function (options) {
     var that = this
@@ -36,13 +38,25 @@ Page({
                   rankings: true
                 })
                 that.loadInit()
-                // that.answers()
+                if (options.viewDrawing) {
+                  that.setData({
+                    question: false
+                  })
+                  that.answers()
+                } else {
+                  that.setData({
+                    isUserInfo: false
+                  })
+                }
               }
             }
           })
         } else {}
       },
       fail: res => {}
+    })
+    wx.showShareMenu({
+      withShareTicket: true
     })
   },
   loadInit: function () {
@@ -82,6 +96,52 @@ Page({
       }
     })
   },
+  // 分享
+  onShareAppMessage: function (res) {
+    var that = this
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      // console.log(res.target)
+    }
+    return {
+      title: '魔卡多',
+      path: 'src/home/home',
+      success: function(res) {
+        // 转发成功
+        wx.getShareInfo({
+          shareTicket: res.shareTickets[0],
+          success: function(res) {
+            that.uploadGroupInfo(res.encryptedData, res.iv)
+          }
+        })
+      },
+      fail: function(res) {
+        // 转发失败
+      }
+    }
+  },
+  // 解析信息
+  uploadGroupInfo: function (encryptedData, iv) {
+    var that = this
+    wx.request({
+      url: config.host + '/v1/user_share_groups/upload_group_info',
+      method: 'POST',
+      header: {
+        'Authorization': that.data.access_token,
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify({
+        'encryptedData': encryptedData,
+        'iv': iv
+      }),
+      success: function (res) {
+        wx.showToast({
+          title: '挑战书发送成功！',
+          icon: 'success'
+        })
+      }
+    })
+  },
   selectTap: function (e) {
     var selectUpdata = this.data.creditAmountTest
     for (var i = 0; i < selectUpdata[this.data.creditAmountIndex].items.length; i++) {
@@ -100,7 +160,8 @@ Page({
     if (this.data.creditAmountIndex > 0) {
       this.setData({
         creditAmountIndex: this.data.creditAmountIndex - 1,
-        isUserInfo: true
+        isUserInfo: false,
+        isComplete: true
       })
     }
   },
@@ -119,7 +180,8 @@ Page({
     }
     if (that.data.creditAmountIndex == listLength - 1 && isTrue) {
       that.setData({
-        isUserInfo: false
+        isUserInfo: true,
+        isComplete: false
       })
     }
     if (that.data.creditAmountIndex == listLength && that.data.creditAmountTest != '' && isTrue) {
@@ -166,11 +228,32 @@ Page({
       })
     } else if (that.data.creditAmountIndex - 1 < listLength && !isTrue) {
       wx.showModal({
-       title: '请选择',
-       showCancel: false,
-       content: '至少选中其中一项'
-     })
+        title: '请选择',
+        showCancel: false,
+        content: '至少选中其中一项'
+      })
     }
+    if (e.detail.encryptedData && e.detail.iv) {
+      that.uploadWechat(e.detail.encryptedData, e.detail.iv)
+    }
+  },
+  uploadWechat: function (encryptedData, iv) {
+    var that = this
+    wx.request({
+      url: config.host + '/v1/users/upload_wechat_userinfo',
+      method: 'POST',
+      header: {
+        'Authorization': that.data.access_token,
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify({
+        'encryptedData': encryptedData,
+        'iv': iv
+      }),
+      success: function (res) {
+        // console.log(res.data)
+      }
+    })
   },
   answers: function () {
     var that = this
@@ -182,10 +265,11 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
+        that.dowFile(res.data.miniprogram_url, 'miniprogramUrl')
+        that.dowFile(res.data.image_url, 'imageUrl')
         that.setData({
           answersData: res.data
         })
-        that.dowFile(res.data.image_url)
         // that.createNewImg()
       }
     })
@@ -217,11 +301,12 @@ Page({
     let that=this
     var size = that.setCanvasSize()
     // 绘制文字
+    // var description = this.data.answersData.description
+    var title = this.data.answersData.name
+    var userName = this.data.answersData.user_name
     var description = this.data.answersData.description
-    var userName = this.data.userName
-    var copywriting = this.data.copywriting
-    if (copywriting.length > 15) {
-      let arr = this.data.copywriting.split("@_@")
+    if (description.split("\r\n").length > 1) {
+      let arr = description.split("\r\n")
       if (arr.length > 0) {
         for (var i = 0;i < arr.length;i++) {
           that.changeLine(arr[i], size, context)
@@ -234,7 +319,7 @@ Page({
       context.setFontSize(30)
       context.setFillStyle("#ffffff")
       context.setTextAlign("center")
-      context.fillText(that.data.copywriting, size.w * 0.82, size.h * 1.1)
+      context.fillText(description, size.w * 0.79, size.h * 1.1)
     }
     context.setFontSize(40)
     context.setFillStyle("#27303A")
@@ -244,8 +329,8 @@ Page({
     context.setFontSize(30)
     context.setFillStyle("#27303A")
     context.setTextAlign("center")
-    context.font = "bold"
-    context.fillText(description, size.w * 0.85, size.h * 0.25)
+    // context.font = "bold"
+    context.fillText(title, size.w * 0.85, size.h * 0.25)
     context.stroke()
   },
   //将2绘制到canvas的固定
@@ -265,10 +350,10 @@ Page({
     var size = that.setCanvasSize()
     var context = wx.createCanvasContext('myCanvas')
     // 展示图
-    var backImg = that.data.answersData.image_url
+    var backImg = that.data.imageUrl
     // 小程序二维码
-    var miniprogram = that.data.answersData.miniprogram_url
-    var avatarUrl = that.data.avatarUrl
+    var miniprogram = that.data.miniprogramUrl
+    var avatarUrl = this.data.answersData.user_avatar_url
     var imageZw = "/layouts/assets/images/bankcard.png"
     context.setFillStyle('#ffffff')
     context.fillRect(0, 0, size.w * 2, size.h * 2)
@@ -276,13 +361,7 @@ Page({
     context.fillRect(0, size.h * 1, size.w * 1.8, size.h * 0.3)
     context.drawImage(backImg, size.w * 0.25, size.h * 0.35, size.w * 1.2, size.h * 0.5)
     context.drawImage(miniprogram, size.w * 0.45, size.h * 1.33, size.w * 0.8, size.h * 0.40)
-
-    // context.drawImage(avatarUrl, size.w / 2 + 80, size.h * 0.76, 160, 160)
-    // 绘制圆
-    // this.circleImg(context, avatarUrl, size.w / 2 - 60, size.h * 0.32, 30, 0)
-    // context.drawImage(imageZw, size.w / 2 - 25, size.h * 0.7, size.w * 0.14, size.w * 0.14)
     this.settextSentence(context)
-    // this.settextDescribe(context)
 
     //绘制图片
     context.draw()
@@ -290,7 +369,7 @@ Page({
     wx.showToast({
       title: '生成中...',
       icon: 'loading',
-      duration: 500
+      duration: 1000
     })
 
     setTimeout(function () {
@@ -301,7 +380,7 @@ Page({
           that.setData({
             imagePath: tempFilePath,
             canvasHidden: false,
-            maskHidden: true,
+            maskHidden: true
           })
 　　　　　　//将生成的图片放入到《image》标签里
           var img = that.data.imagePath
@@ -315,6 +394,9 @@ Page({
         }
       })
     }, 500)
+    that.setData({
+      isFetching: false
+    })
   },
   circleImg: function (ctx, img, x, y, r) {
     ctx.save()
@@ -385,12 +467,14 @@ Page({
     wx.getUserInfo({
       success: res => {
         that.setData({
-          isUserInfo: true
+          isUserInfo: true,
+          isComplete: false
         })
       }
     })
   },
-  dowFile: function (url) {
+  dowFile: function (url, type) {
+    var that = this
     wx.downloadFile({
       url: url,
       success: function(res) {
@@ -398,7 +482,22 @@ Page({
           wx.playVoice({
             filePath: res.tempFilePath
           })
-          debugger
+          switch (type) {
+            case 'miniprogramUrl':
+              that.setData({
+                miniprogramUrl: res.tempFilePath
+              })
+              break
+            case 'imageUrl':
+              that.setData({
+                imageUrl: res.tempFilePath
+              })
+              break
+            default:
+          }
+          if (that.data.miniprogramUrl != '' && that.data.imageUrl != '') {
+            that.createNewImg()
+          }
         }
       }
     })
