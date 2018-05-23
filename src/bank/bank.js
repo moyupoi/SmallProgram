@@ -13,39 +13,24 @@ Page({
     parPage: 10,
     page: 1,
     bankCards: [],
-    hasMoreData: true
+    hasMoreData: true,
+    access_token: ''
   },
   onLoad: function (options) {
+    const that = this
+    const access_token = wx.getStorageSync('access_token') || ''
     if (options.id) {
       this.setData({
         themeArrayIndex: options.id
       })
     }
-    var that = this
-    wx.login({
-      success: res => {
-        if (res.code) {
-          wx.request({
-            url: config.host + '/v1/users/wechat_login',
-            method: 'POST',
-            data: {
-              code: res.code
-            }, success: function (res) {
-              that.setData({
-                access_token: res.data.access_token
-              })
-              if (res.data.access_token != '') {
-                that.setData({
-                  rankings: true
-                })
-                that.loadInit(that.data.parPage, that.data.page, '', that.data.themeArrayIndex)
-              }
-            }
-          })
-        } else {}
-      },
-      fail: res => {}
-    })
+    if (access_token != '') {
+      that.setData({
+        access_token: access_token,
+        rankings: true
+      })
+      that.loadInit(that.data.parPage, that.data.page, '', that.data.themeArrayIndex)
+    }
   },
   loadInit: function (per_page, page, bank_id, theme) {
     var that = this
@@ -54,7 +39,7 @@ Page({
       url: config.host + '/v1/bank_cards',
       method: 'GET',
       header: {
-        'Authorization': app.globalData.access_token,
+        'Authorization': that.data.access_token,
         'Content-Type': 'application/json'
       },
       data: {

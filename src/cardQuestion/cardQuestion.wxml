@@ -30,7 +30,7 @@
     </text>
     <label class="subtitle" wx:if="{{bestRecommends.length > 0}}">最佳匹配</label>
     <view>
-      <view class="cardItem" wx:for="{{bestRecommends}}" wx:key="index">
+      <view class="cardItem" wx:for="{{bestRecommends}}" wx:key="index" data-url="{{item.apply_url}}" bindtap="cardItem">
         <view class="quota">
           <image src="{{item.image_url}}"></image>
           <text>最高额度: </text>

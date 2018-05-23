@@ -3,7 +3,6 @@ const app = getApp()
 
 Page({
   data: {
-    isFetching: true,
     isAccess_token: true,
     portraitPath: '',
     rankingsList: [],
@@ -19,26 +18,38 @@ Page({
 
   },
   onLoad: function (options) {
-    var that = this
-
+    const that = this
     // 埋点
     wx.reportAnalytics('page_view', {
       page_view_name: '首页'
     })
-    wx.login({
-      success: res => {
-        if (res.code) {
-          wx.request({
-            url: config.host + '/v1/users/wechat_login',
-            method: 'POST',
-            data: {
-              code: res.code
-            }, success: function (res) {
-              that.setData({
-                access_token: res.data.access_token,
-                isFetching: false
-              })
-              if (res.data.access_token != '') {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+
+    // 展示本地存储能力
+    const access_token = wx.getStorageSync('access_token') || ''
+    // wx.setStorageSync('logs', logs)
+    if (access_token == '') {
+      // 登录
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          if (res.code) {
+            // 发起网络请求
+            wx.request({
+              url: config.host + '/v1/users/wechat_login',
+              method: 'POST',
+              data: {
+                code: res.code
+              }, success: function (res) {
+                wx.setStorage({
+                  key: "access_token",
+                  data: res.data.access_token
+                })
+                that.setData({
+                  access_token: res.data.access_token,
+                })
                 if (options.open_gid) {
                   that.getGroupsInfo(options.open_gid)
                 // 通过群内转发进入的用户
@@ -49,16 +60,45 @@ Page({
                   that.loginUserShareGroups()
                 }
               }
-            }
-          })
-        } else {}
-      },
-      fail: res => {}
-    })
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-
+            })
+          } else {
+            // console.log('登录失败！' + res.errMsg)
+          }
+        },
+        fail: res => {
+          wx.showToast(res);
+        }
+      })
+    } else {
+      that.setData({
+        access_token: access_token,
+      })
+      if (options.open_gid) {
+        that.getGroupsInfo(options.open_gid)
+      // 通过群内转发进入的用户
+      } else if (app.globalData.shareEncryptedData && app.globalData.shareIv) {
+        that.uploadGroupInfo(app.globalData.shareEncryptedData, app.globalData.shareIv)
+      } else {
+        // 获取群列表 如果当前用户超过1个说明分享过群
+        that.loginUserShareGroups()
+      }
+    }
+    // wx.login({
+    //   success: res => {
+    //     if (res.code) {
+    //       wx.request({
+    //         url: config.host + '/v1/users/wechat_login',
+    //         method: 'POST',
+    //         data: {
+    //           code: res.code
+    //         }, success: function (res) {
+    //
+    //         }
+    //       })
+    //     } else {}
+    //   },
+    //   fail: res => {}
+    // })
   },
   // 分享
   onShareAppMessage: function (res) {

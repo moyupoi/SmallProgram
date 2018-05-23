@@ -9,8 +9,8 @@
     </picker>
   </view>
   <view class="cardList">
-    <view class="cardItem" wx:for="{{bankCards}}" wx:key="index" data-url="{{item.apply_url}}">
-      <view class="cardsQuota" bindtap="cardItem">
+    <view class="cardItem" wx:for="{{bankCards}}" wx:key="index">
+      <view class="cardsQuota" bindtap="cardItem" data-url="{{item.apply_url}}">
         <view class="quota">
           <image src="{{item.image_url}}"></image>
           <text>最高额度: </text>

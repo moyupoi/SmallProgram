@@ -1,5 +1,4 @@
-<include src="/layouts/libs/LoadingZ.wxml" wx:if="{{isFetching}}" />
-<view class="home" wx:if="{{!isFetching}}">
+<view class="home">
   <view class="banner">
     <open-data type="userAvatarUrl" class="portrait"></open-data>
     <open-data type="userNickName" class="userName">{{ccc}}</open-data>
@@ -37,7 +36,7 @@
     <view class="groupsInit" hidden="{{isGroupsInit}}">
       <view class="comparison" wx:for="{{userShareGroupsList}}" wx:key="index">
         <navigator url="/src/home/home?open_gid={{item.open_gid}}" hover-class="none" class="userGroup">
-          <open-data type="userAvatarUrl" open-gid="{{item.open_gid}}" class="groupPortrait"></open-data>
+          <image src="{{item.avatar_url}}"></image>
           <view>
             <open-data type="groupName" open-gid="{{item.open_gid}}" class="groupName"></open-data>
             <text class="groupNickName">已有{{item.join_num}}人参加</text>

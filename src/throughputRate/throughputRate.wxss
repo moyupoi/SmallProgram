@@ -1,0 +1,104 @@
+page {
+  background: #F2F2F2;
+}
+.throughputRate {
+  width: 100%;
+  height: 100%;
+}
+.rateModular {
+  background: #fff;
+  height: 288rpx;
+  margin-top: 56rpx;
+  color: #666666;
+  overflow: hidden;
+}
+.rateModular .passingRate {
+  padding: 0 30rpx 0 50rpx;
+}
+.rateModular .passingRate text {
+  font-size: 28rpx;
+}
+.rateModular .passingRate text:nth-of-type(2) {
+  vertical-align: middle;
+}
+.rateModular .passingRate .percentage {
+  font-size: 35rpx;
+  color: #FF5C65;
+  margin-left: 10rpx;
+  vertical-align: middle;
+}
+.rateModular .passingRate label {
+  font-size: 60rpx;
+  font-weight: 600;
+  vertical-align: sub;
+  line-height: 100rpx;
+  margin: 0 30rpx;
+}
+.rateModular .friendsRate {
+  padding: 0 30rpx 0 50rpx;
+}
+.rateModular .friendsRate text {
+  font-size: 28rpx;
+}
+.rateModular .friendsRate image {
+  width: 60rpx;
+  height: 60rpx;
+  display: inline-block;
+  margin: 0 10rpx;
+}
+.rateModular .friendsRate label {
+  font-size: 70rpx;
+  color: #FF5C65;
+}
+.giveModular {
+  background: #fff;
+  margin-top: 56rpx;
+  height: 640rpx;
+  overflow: hidden;
+  text-align: center;
+}
+.giveModular text {
+  font-size: 28rpx;
+  color: #666666;
+  display: block;
+  text-align: center;
+  margin-top: 30rpx;
+}
+.giveModular label {
+  font-size: 90rpx;
+  font-weight: 500;
+  color: #FF5C65;
+  text-align: center;
+  display: inline-block;
+  margin-top: 30rpx;
+}
+.giveModular p {
+  font-size: 30rpx;
+  display: inline-block;
+  color: #FF5C65;
+}
+.applyModular {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.applyModular button {
+  width: 30%;
+  height: 100rpx;
+  background: #fff;
+  color: #00DBB2;
+  display: inline-block;
+  border: 0;
+  border-radius: 0;
+  font-size: 30rpx;
+  line-height: 100rpx;
+}
+.applyModular button:nth-of-type(2) {
+  background: #00DBB2;
+  color: #fff;
+  width: 70%;
+}
+.applyModular button:after {
+  border: 0;
+}

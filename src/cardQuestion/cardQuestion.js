@@ -3,6 +3,7 @@ const app = getApp()
 
 Page({
   data: {
+    access_token: '',
     question: true,
     selectCardIndex: 0,
     selectCardTest: [],
@@ -11,31 +12,15 @@ Page({
     otherRecommends: []
   },
   onLoad: function(options) {
-    var that = this
-    wx.login({
-      success: res => {
-        if (res.code) {
-          wx.request({
-            url: config.host + '/v1/users/wechat_login',
-            method: 'POST',
-            data: {
-              code: res.code
-            }, success: function (res) {
-              that.setData({
-                access_token: res.data.access_token
-              })
-              if (res.data.access_token != '') {
-                that.setData({
-                  rankings: true
-                })
-                that.loadInit()
-              }
-            }
-          })
-        } else {}
-      },
-      fail: res => {}
-    })
+    const that = this
+    const access_token = wx.getStorageSync('access_token') || ''
+    if (access_token != '') {
+      that.setData({
+        access_token: access_token,
+        rankings: true
+      })
+      that.loadInit()
+    }
   },
   loadInit: function () {
     var that = this
@@ -43,7 +28,7 @@ Page({
       url: config.host + '/v1/questions',
       method: 'GET',
       header: {
-        'Authorization': app.globalData.access_token,
+        'Authorization': that.data.access_token,
         'Content-Type': 'application/json'
       },
       data: {
@@ -121,7 +106,7 @@ Page({
         url: config.host + '/v1/questions/test_result',
         method: 'POST',
         header: {
-          'Authorization': app.globalData.access_token,
+          'Authorization': that.data.access_token,
           'Content-Type': 'application/json'
         },
         data: JSON.stringify({
@@ -152,7 +137,7 @@ Page({
       url: config.host + '/v1/bank_cards/recommend',
       method: 'GET',
       header: {
-        'Authorization': app.globalData.access_token,
+        'Authorization': that.data.access_token,
         'Content-Type': 'application/json'
       },
       success: function (res) {

@@ -1,0 +1,28 @@
+<view class="throughputRate">
+  <view class="rateModular">
+    <view class="passingRate">
+      <text>当前申请通过率</text>
+      <label>61%</label>
+      <text>+</text>
+      <text class="percentage">3.5%</text>
+    </view>
+    <view class="friendsRate">
+      <text>邀请好友助力，提升申请通过率</text>
+      <image src="./images/arrow.png"></image>
+      <label>79%</label>
+    </view>
+  </view>
+  <view class="giveModular">
+    <text>邀请好友助力，申请信用卡完成激活</text>
+    <text>您可以获得</text>
+    <label>50</label>
+    <p>元</p>
+    <text>助力您的好友，最高可获得</text>
+    <label>20</label>
+    <p>元</p>
+  </view>
+  <view class="applyModular">
+    <button bindtap="applyCard">直接申请</button>
+    <button bindtap="friendsHelp">邀请好友助力</button>
+  </view>
+</view>

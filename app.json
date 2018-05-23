@@ -1,5 +1,7 @@
 {
   "pages": [
+    "src/progressQuery/progressQuery",
+    "src/throughputRate/throughputRate",
     "src/home/home",
     "src/bankList/bankList",
     "src/bank/bank",

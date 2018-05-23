@@ -146,7 +146,7 @@ page {
   width: 90rpx;
   height: 90rpx;
   display: inline-block;
-  border-radius: 50rpx;
+  border-radius: 10rpx;
   margin-right: 20rpx;
 }
 .comparison .userGroup view {

@@ -17,44 +17,30 @@ Page({
     answersData: '',
     position: "1.1",
     miniprogramUrl: '',
-    imageUrl: ''
+    imageUrl: '',
+    access_token: ''
   },
   onLoad: function (options) {
-    var that = this
-    wx.login({
-      success: res => {
-        if (res.code) {
-          wx.request({
-            url: config.host + '/v1/users/wechat_login',
-            method: 'POST',
-            data: {
-              code: res.code
-            }, success: function (res) {
-              that.setData({
-                access_token: res.data.access_token
-              })
-              if (res.data.access_token != '') {
-                that.setData({
-                  rankings: true
-                })
-                that.loadInit()
-                if (options.viewDrawing) {
-                  that.setData({
-                    question: false
-                  })
-                  that.answers()
-                } else {
-                  that.setData({
-                    isUserInfo: false
-                  })
-                }
-              }
-            }
-          })
-        } else {}
-      },
-      fail: res => {}
-    })
+    const that = this
+    const access_token = wx.getStorageSync('access_token') || ''
+    if (access_token != '') {
+      that.setData({
+        access_token: access_token,
+        rankings: true
+      })
+      that.loadInit()
+      if (options.viewDrawing) {
+        that.setData({
+          question: false
+        })
+        that.answers()
+      } else {
+        that.setData({
+          isUserInfo: false,
+          isFetching: false
+        })
+      }
+    }
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -65,7 +51,7 @@ Page({
       url: config.host + '/v1/questions',
       method: 'GET',
       header: {
-        'Authorization': app.globalData.access_token,
+        'Authorization': that.data.access_token,
         'Content-Type': 'application/json'
       },
       data: {
@@ -205,7 +191,7 @@ Page({
           url: config.host + '/v1/questions/test_result',
           method: 'POST',
           header: {
-            'Authorization': app.globalData.access_token,
+            'Authorization': that.data.access_token,
             'Content-Type': 'application/json'
           },
           data: JSON.stringify({
@@ -261,7 +247,7 @@ Page({
       url: config.host + '/v1/answers/recommend',
       method: 'GET',
       header: {
-        'Authorization': app.globalData.access_token,
+        'Authorization': that.data.access_token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
@@ -330,7 +316,7 @@ Page({
     context.setFillStyle("#27303A")
     context.setTextAlign("center")
     // context.font = "bold"
-    context.fillText(title, size.w * 0.85, size.h * 0.25)
+    context.fillText(title, size.w * 0.82, size.h * 0.25)
     context.stroke()
   },
   //将2绘制到canvas的固定
@@ -354,7 +340,6 @@ Page({
     // 小程序二维码
     var miniprogram = that.data.miniprogramUrl
     var avatarUrl = this.data.answersData.user_avatar_url
-    var imageZw = "/layouts/assets/images/bankcard.png"
     context.setFillStyle('#ffffff')
     context.fillRect(0, 0, size.w * 2, size.h * 2)
     context.setFillStyle('#27303A')
