@@ -4,32 +4,22 @@
     <text style="color: {{!isFriends? '#03DBB3':'#454545'}}" bindtap="helpBtn" data-help="1">我助力的</text>
   </view>
   <view class="progressList">
-    <view class="friends" style="display: {{isFriends? 'block':'none'}}">
+    <view class="friends" wx:for="{{inviteList}}" wx:key="index" style="display: {{isFriends? 'block':'none'}}">
       <view class="item">
-        <text>中信银行</text>
-        <text>中信银行银联标准IC信用卡</text>
-        <time>2018-05-07 17:53:48</time>
-        <label bindtap="progressQuery">助力记录</label>
-      </view>
-      <view class="item">
-        <text>招商银行</text>
-        <text>招商银行银联标准IC信用卡</text>
-        <time>2018-05-07 17:53:48</time>
-        <label bindtap="progressQuery">助力记录</label>
+        <text>{{item.bank_name}}</text>
+        <text>{{item.bank_card_name}}</text>
+        <time>{{item.created_at}}</time>
+        <navigator url="/src/friendsHelpList/friendsHelpList?shareid={{item.id}}" class="friendsLab" hover-class="none">助力记录</navigator>
       </view>
     </view>
-    <view class="friends" style="display: {{!isFriends? 'block':'none'}}">
+  </view>
+  <view class="helpList">
+    <view class="friends" wx:for="{{helpList}}" wx:key="index" style="display: {{!isFriends? 'block':'none'}}">
       <view class="item">
-        <text>中信银行</text>
-        <text>中信银行银联标准IC信用卡</text>
-        <time>2018-05-07 17:53:48</time>
-        <label bindtap="progressQuery">我的记录</label>
-      </view>
-      <view class="item">
-        <text>招商银行</text>
-        <text>招商银行银联标准IC信用卡</text>
-        <time>2018-05-07 17:53:48</time>
-        <label bindtap="progressQuery">我的记录</label>
+        <text>{{item.bank_name}}</text>
+        <text>{{item.bank_card_name}}</text>
+        <time>{{item.created_at}}</time>
+        <navigator url="/src/friendsHelpList/friendsHelpList?shareid={{item.id}}" class="friendsLab" hover-class="none">助力记录</navigator>
       </view>
     </view>
   </view>

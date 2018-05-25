@@ -87,7 +87,6 @@ Page({
           resetLogin(that)
         }
         that.getGroupsInfo(res.data.open_gid)
-
       }, fail: function (e) {
       }
     })

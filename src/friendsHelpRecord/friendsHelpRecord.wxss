@@ -9,7 +9,7 @@ page {
 
 }
 .help text {
-  width: 375rpx;
+  width: 49.7%;
   height: 100rpx;
   font-size: 30rpx;
   background: #fff;
@@ -62,7 +62,54 @@ page {
   display: block;
   margin-top: 30rpx;
 }
-.progressList .friends .item label {
+.progressList .friends .item .friendsLab {
+  position: absolute;
+  top: 150rpx;
+  right: 40rpx;
+  border: 1rpx solid #CCCCCC;
+  border-radius: 10rpx;
+  padding: 8rpx 18rpx;
+  font-size: 25rpx;
+}
+.helpList {
+
+}
+.helpList .friends .item {
+  background: #fff;
+  height: 200rpx;
+  margin-top: 30rpx;
+  padding: 20rpx 60rpx;
+  overflow: hidden;
+  position: relative;
+}
+.helpList .friends .item text:nth-of-type(1) {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #000;
+  display: block;
+}
+.helpList .friends .item text:nth-of-type(1):before {
+  content: '';
+  height: 36rpx;
+  width: 6rpx;
+  background: #00DBB2;
+  position: absolute;
+  top: 25rpx;
+  left: 40rpx;
+}
+.helpList .friends .item text:nth-of-type(2) {
+  font-size: 28rpx;
+  color: #333333;
+  display: block;
+  margin-top: 40rpx;
+}
+.helpList .friends .item time {
+  font-size: 24rpx;
+  color: #999999;
+  display: block;
+  margin-top: 30rpx;
+}
+.helpList .friends .item .friendsLab {
   position: absolute;
   top: 150rpx;
   right: 40rpx;

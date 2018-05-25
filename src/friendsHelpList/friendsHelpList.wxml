@@ -1,28 +1,12 @@
 <view class="friendsHelpList">
-  <view class="inviterList">
+  <view class="inviterList" wx:for="{{helpInit}}" wx:key="index">
     <view class="item">
-      <image src="./images/temp.png"></image>
+      <image src="{{item.avatar_url}}"></image>
       <view>
-        <text>不服输不舒服斯基</text>
-        <time>2018-05-07 18:05:26</time>
+        <text>{{item.name}}</text>
+        <time>{{item.created_at}}</time>
       </view>
-      <label>+2.7%</label>
-    </view>
-    <view class="item">
-      <image src="./images/temp.png"></image>
-      <view>
-        <text>不服输不舒服斯基</text>
-        <time>2018-05-07 18:05:26</time>
-      </view>
-      <label>+2.7%</label>
-    </view>
-    <view class="item">
-      <image src="./images/temp.png"></image>
-      <view>
-        <text>不服输不舒服斯基</text>
-        <time>2018-05-07 18:05:26</time>
-      </view>
-      <label>+2.7%</label>
+      <label>+{{item.increase_pass_rate * 100}}%</label>
     </view>
   </view>
 </view>

@@ -31,9 +31,9 @@
       </button>
       <!-- <navigator url="/src/home/home" hover-class="none" class="pk">发起群PK</navigator> -->
     </view>
-    <button bindtap="toBankList" class="toBankList">
+    <!-- <button bindtap="toBankList" class="toBankList">
       <text>看看适合我的信用卡</text>
       <text>极速、大额、特权多</text>
-    </button>
+    </button> -->
   </view>
 </view>

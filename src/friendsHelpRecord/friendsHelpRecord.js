@@ -1,11 +1,12 @@
 import config from '../../config'
-const app = getApp()
 import { resetLogin, access_token } from '../../layouts/assets/javascript/bindMethods.js'
 
 Page({
   data: {
     access_token: '',
-    isFriends: true
+    isFriends: true,
+    inviteList: [],
+    helpList: []
   },
   onLoad: function (options) {
     const that = this
@@ -15,6 +16,7 @@ Page({
         access_token: access_token
       })
       that.inviteList()
+      that.helpList()
     } else {
       resetLogin(that)
     }
@@ -32,6 +34,30 @@ Page({
         if (res.statusCode == '401') {
           resetLogin(that)
         }
+        that.setData({
+          inviteList: res.data
+        })
+      },
+      fail: function(res) {
+      }
+    })
+  },
+  helpList: function () {
+    const that = this
+    wx.request({
+      url: config.host + '/v1/user_invite_records/help_list',
+      method: 'GET',
+      header: {
+        'Authorization': that.data.access_token,
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        if (res.statusCode == '401') {
+          resetLogin(that)
+        }
+        that.setData({
+          helpList: res.data
+        })
       },
       fail: function(res) {
       }

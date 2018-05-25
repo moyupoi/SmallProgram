@@ -2,9 +2,8 @@
   "pages": [
     "src/home/home",
     "src/friendsHelpRecord/friendsHelpRecord",
-    "src/personalCenter/personalCenter",
-
     "src/throughputRate/throughputRate",
+    "src/personalCenter/personalCenter",
     "src/money/money",
     "src/friendsHelpList/friendsHelpList",
     "src/friendsHelp/friendsHelp",
@@ -22,5 +21,32 @@
     "navigationBarTextStyle": "white",
     "navigationStyle": "default",
     "onReachBottom": true
+  },
+  "tabBar": {
+    "borderStyle": "dark",
+    "backgroundColor": "#fff",
+    "color": "#000",
+    "selectedColor": "#00DBB2",
+    "position": "bottom",
+    "list": [
+      {
+        "iconPath": "./layouts/assets/images/home02.png",
+        "selectedIconPath": "./layouts/assets/images/home01.png",
+        "pagePath": "src/home/home",
+        "text": "首页"
+      },
+      {
+        "iconPath": "./layouts/assets/images/card02.png",
+        "selectedIconPath": "./layouts/assets/images/card01.png",
+        "pagePath": "src/bankList/bankList",
+        "text": "办卡"
+      },
+      {
+        "iconPath": "./layouts/assets/images/personal02.png",
+        "selectedIconPath": "./layouts/assets/images/personal01.png",
+        "pagePath": "src/personalCenter/personalCenter",
+        "text": "我的"
+      }
+    ]
   }
 }

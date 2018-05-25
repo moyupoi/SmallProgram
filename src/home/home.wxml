@@ -49,9 +49,9 @@
     <button bindtap="viewDrawing" class="viewDrawing" hidden="{{isViewDrawing}}">查看我的信用等价物</button>
     <button open-type="share" class="groupPK" hidden="{{isGroupPK}}">发起群PK</button>
     <!-- <view hidden="{{rankings}}"></view> -->
-    <button bindtap="toBankList" class="toBankList">
+    <!-- <button bindtap="toBankList" class="toBankList">
       <text>看看适合我的信用卡</text>
       <text>极速、大额、特权多</text>
-    </button>
+    </button> -->
   </view>
 </view>

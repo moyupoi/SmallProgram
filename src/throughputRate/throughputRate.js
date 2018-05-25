@@ -14,7 +14,8 @@ Page({
     if (access_token != '') {
       that.setData({
         access_token: access_token,
-        bankCardId: options.cardid
+        // bankCardId: options.cardid
+        bankCardId: "5af563304f14bf4bb8aea16b"
       })
       that.inviteInit()
     }
@@ -53,9 +54,29 @@ Page({
       confirmText: '邀请助力',
       success: function(res) {
         if (res.confirm) {
-          // console.log('邀请助力')
+          // 邀请助力 弹出分享
         } else if (res.cancel) {
-          // console.log('直接申请')
+          // 直接申请 复制链接到剪切板
+          wx.showActionSheet({
+            itemList: ['卡片地址复制到剪切板'],
+            success: function(res) {
+              if (res.tapIndex == 0) {
+                wx.setClipboardData({
+                  data: that.data.inviteData.apply_url,
+                  success: function(res) {
+                    wx.getClipboardData ({
+                      success: function(res) {
+                        wx.showToast({
+                          title: "复制专属链接在浏览器打开",
+                        })
+                      }
+                    })
+                  }
+                })
+              }
+            },
+            fail: function(res) {}
+          })
         }
       }
     })
@@ -68,7 +89,7 @@ Page({
       // console.log(res.target)
     }
     return {
-      title: '',
+      title: '邀请助力',
       path: 'src/friendsHelp/friendsHelp?shareid=' + that.data.inviteData.id,
       imageUrl: '',
       success: function(tic) {

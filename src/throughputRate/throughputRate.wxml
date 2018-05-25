@@ -1,32 +1,34 @@
 <view class="throughputRate">
   <view class="rateModular">
     <view class="passingRate">
-      <text>当前申请通过率</text>
+      <image src="./images/progress.png"></image>
       <label>{{ inviteData.pass_rate * 100}}%</label>
+      <text>当前申请通过率</text>
       <text class="percentage" style="display:{{ inviteData.increase_pass_rate * 100 <= 0 ? 'none' : 'block' }}">+{{ inviteData.increase_pass_rate * 100 }}%</text>
     </view>
     <view class="friendsRate">
-      <text>邀请好友助力，提升申请通过率</text>
+      <text>邀5名好友助力，提升申请通过率</text>
       <image src="./images/arrow.png"></image>
       <label>{{ inviteData.max_increase_pass_rate * 100 }}%</label>
     </view>
-  </view>
-  <view class="giveModular">
-    <text>邀请好友助力，申请信用卡完成激活</text>
-    <text>您可以获得</text>
-    <label>{{ inviteData.apply_reward }}</label>
-    <p>元</p>
-    <text>助力您的好友，最高可获得</text>
-    <label>{{ inviteData.help_reward }}</label>
-    <p>元</p>
+    <view class="giveModular">
+      <text>邀请好友助力，申请信用卡完成激活还，可以获得</text>
+      <label>{{ inviteData.apply_reward }}元</label>
+    </view>
+    <view class="giveModular">
+      <text>助力您的好友，最高可获得</text>
+      <label>{{ inviteData.help_reward }}元</label>
+    </view>
   </view>
   <view class="record">
-    <text class="title">助力记录({{ inviteData.current_invite_help_count }}/{{ inviteData.total_invite_help_count }})</text>
+    <text class="title">助力记录(</text>
+    <text class="title">{{ inviteData.current_invite_help_count }}</text>
+    <text class="title">/{{ inviteData.total_invite_help_count }})</text>
     <view wx:for="{{ inviteData.invite_help_records }}" wx:key="index">
       <view class="recordList">
         <image src="{{item.avatar_url}}"></image>
         <label>{{item.name}}</label>
-        <text>+{{item.increase_pass_rate * 100}}</text>
+        <text>+{{item.increase_pass_rate * 100}}%</text>
       </view>
     </view>
   </view>

@@ -13,5 +13,11 @@ Page({
         access_token: access_token
       })
     }
+  },
+  queryProject: function () {
+    wx.showToast({
+      title: "功能开发中...",
+      icon: "none"
+    })
   }
 })

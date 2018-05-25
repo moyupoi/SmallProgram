@@ -7,74 +7,88 @@ page {
 }
 .rateModular {
   background: #fff;
-  height: 288rpx;
-  margin-top: 56rpx;
   color: #666666;
   overflow: hidden;
+  position: relative;
+  padding: 0 60rpx;
 }
 .rateModular .passingRate {
-  padding: 0 30rpx 0 50rpx;
+  overflow: hidden;
 }
-.rateModular .passingRate text {
-  font-size: 28rpx;
+.rateModular .passingRate image {
+  position: absolute;
+  top: 52rpx;
+  left: 228rpx;
+  width: 250rpx;
+  height: 250rpx;
 }
 .rateModular .passingRate .percentage {
-  font-size: 40rpx;
-  color: #FF5C65;
-  margin-left: 10rpx;
+  font-size: 28rpx;
+  color: #fff;
   display: block;
-  float: right;
-  margin: 30rpx 50rpx 0;
+  position: absolute;
+  top: -20rpx;
+  right: 250rpx;
+  background: #FF5E2F;
+  padding: 5rpx 10rpx;
+  border-radius: 30rpx;
 }
 .rateModular .passingRate label {
   font-size: 60rpx;
   font-weight: 600;
-  vertical-align: sub;
-  line-height: 100rpx;
-  margin: 0 30rpx;
+  margin-top: 138rpx;
+  display: block;
+  text-align: center;
+}
+.rateModular .passingRate text {
+  font-size: 32rpx;
+  color: #999999;
+  display: block;
+  text-align: center;
+  margin-top: 120rpx;
 }
 .rateModular .friendsRate {
-  padding: 0 30rpx 0 50rpx;
+  overflow: hidden;
+  padding: 40rpx 0;
+  margin-top: 30rpx;
+  border-bottom: 1rpx solid #EAEAEA;
 }
 .rateModular .friendsRate text {
   font-size: 28rpx;
+  color: #333333;
+  float: left;
 }
 .rateModular .friendsRate image {
-  width: 60rpx;
-  height: 60rpx;
+  width: 40rpx;
+  height: 40rpx;
   display: inline-block;
   margin: 0 10rpx;
+  float: left;
 }
 .rateModular .friendsRate label {
-  font-size: 70rpx;
-  color: #FF5C65;
+  font-size: 40rpx;
+  color: #FF5E2F;
+  display: inline-block;
+  float: right;
+  margin-top: -10rpx;
 }
 .giveModular {
-  background: #fff;
-  margin-top: 56rpx;
-  height: 640rpx;
   overflow: hidden;
-  text-align: center;
+  text-align: left;
+  border-bottom: 1rpx solid #EAEAEA;
+  padding: 40rpx 0;
 }
 .giveModular text {
   font-size: 28rpx;
-  color: #666666;
-  display: block;
-  text-align: center;
-  margin-top: 30rpx;
+  color: #333333;
+  float: left;
+  width: 500rpx;
 }
 .giveModular label {
-  font-size: 90rpx;
-  font-weight: 500;
+  font-size: 40rpx;
   color: #FF5C65;
-  text-align: center;
   display: inline-block;
-  margin-top: 30rpx;
-}
-.giveModular p {
-  font-size: 30rpx;
-  display: inline-block;
-  color: #FF5C65;
+  float: right;
 }
 .record {
   margin: 20rpx 0 200rpx;
@@ -82,11 +96,31 @@ page {
   overflow: hidden;
 }
 .record .title {
-  color: #000;
-  font-size: 26rpx;
-  text-align: center;
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 600;
   display: block;
-  margin: 30rpx 0;
+  display: inline-block;
+  position: relative;
+  margin: 60rpx 0;
+}
+.record .title:nth-of-type(1) {
+  margin-left: 60rpx;
+}
+.record .title:nth-of-type(2) {
+  color: #00DBB2;
+}
+.record .title:nth-of-type(1)::after {
+  content: '';
+  height: 36rpx;
+  width: 10rpx;
+  background: #00DBB2;
+  position: absolute;
+  top: 5rpx;
+  left: -20rpx;
+}
+.record .title p {
+  color: #00DBB2;
 }
 .record .recordList {
   padding: 40rpx 80rpx 40rpx 40rpx;
@@ -112,7 +146,7 @@ page {
   font-weight: 600;
   display: block;
   float: right;
-  color: #00DBB2;
+  color: #FF5E2F;
 }
 .applyModular {
   position: fixed;

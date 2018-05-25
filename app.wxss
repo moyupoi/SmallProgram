@@ -31,3 +31,6 @@
   display: inline-block;
   color: #494949;
 }
+button::after {
+  border: none;
+}
