@@ -5,7 +5,7 @@ page {
   text-align: center;
   overflow: hidden;
 }
-.question lable {
+.question label {
   font-size: 40rpx;
   color: #00DBB2;
   margin-top: 80rpx;

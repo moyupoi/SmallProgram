@@ -18,14 +18,13 @@ page {
 .rateModular .passingRate text {
   font-size: 28rpx;
 }
-.rateModular .passingRate text:nth-of-type(2) {
-  vertical-align: middle;
-}
 .rateModular .passingRate .percentage {
-  font-size: 35rpx;
+  font-size: 40rpx;
   color: #FF5C65;
   margin-left: 10rpx;
-  vertical-align: middle;
+  display: block;
+  float: right;
+  margin: 30rpx 50rpx 0;
 }
 .rateModular .passingRate label {
   font-size: 60rpx;
@@ -76,6 +75,44 @@ page {
   font-size: 30rpx;
   display: inline-block;
   color: #FF5C65;
+}
+.record {
+  margin: 20rpx 0 200rpx;
+  background: #fff;
+  overflow: hidden;
+}
+.record .title {
+  color: #000;
+  font-size: 26rpx;
+  text-align: center;
+  display: block;
+  margin: 30rpx 0;
+}
+.record .recordList {
+  padding: 40rpx 80rpx 40rpx 40rpx;
+  border-bottom: 1rpx solid #F2F2F2;
+  overflow: hidden;
+}
+.record .recordList image {
+  width: 80rpx;
+  height: 80rpx;
+  display: block;
+  float: left;
+  margin-top: -20rpx;
+  border-radius: 50rpx;
+}
+.record .recordList label {
+  font-size: 26rpx;
+  display: block;
+  float: left;
+  margin-left: 30rpx;
+}
+.record .recordList text {
+  font-size: 36rpx;
+  font-weight: 600;
+  display: block;
+  float: right;
+  color: #00DBB2;
 }
 .applyModular {
   position: fixed;

@@ -486,5 +486,10 @@ Page({
         }
       }
     })
+  },
+  toBankList: function () {
+    wx.navigateTo({
+      url:'/src/bankList/bankList'
+    })
   }
 })

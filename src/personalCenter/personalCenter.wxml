@@ -1,0 +1,28 @@
+<view class="personalCenter">
+  <view class="banner">
+    <open-data type="userAvatarUrl" class="portrait"></open-data>
+    <open-data type="userNickName" class="userName"></open-data>
+  </view>
+  <view class="queryProject">
+    <navigator url="/src/home/home" hover-class="none">
+      <image src="./images/icon01.png"></image>
+      <text>进度查询</text>
+    </navigator>
+    <navigator url="/src/home/home" hover-class="none">
+      <image src="./images/icon02.png"></image>
+      <text>还款日查询</text>
+    </navigator>
+    <navigator url="/src/friendsHelpRecord/friendsHelpRecord" hover-class="none">
+      <image src="./images/icon03.png"></image>
+      <text>好友助力</text>
+    </navigator>
+    <navigator url="/src/home/home" hover-class="none">
+      <image src="./images/icon04.png"></image>
+      <text>钱包</text>
+    </navigator>
+  </view>
+  <view class="feedback">
+    <image src="./images/icon05.png"></image>
+    <text>意见反馈</text>
+  </view>
+</view>

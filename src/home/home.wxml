@@ -1,7 +1,7 @@
 <view class="home">
   <view class="banner">
     <open-data type="userAvatarUrl" class="portrait"></open-data>
-    <open-data type="userNickName" class="userName">{{ccc}}</open-data>
+    <open-data type="userNickName" class="userName"></open-data>
   </view>
   <view class="content">
     <view class="describe" hidden="{{isDefault}}">

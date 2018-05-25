@@ -1,0 +1,45 @@
+<view class="moneyFrame">
+  <open-data type="userAvatarUrl" class="portrait"></open-data>
+  <view class="deposit">
+    <text class="title">可提现</text>
+    <label class="totalAmount">￥203</label>
+    <view class="bonus">
+      <text>获得总奖金</text>
+      <label>1203</label>
+    </view>
+    <view class="bonus">
+      <text>已提现</text>
+      <label>1000</label>
+    </view>
+  </view>
+  <view class="record" hidden="{{isRecord}}">
+    <view class="recordList">
+      <view>
+        <text>助力好友成功办卡</text>
+        <time>2018-05-07 18:05:26</time>
+      </view>
+      <label>+50</label>
+    </view>
+    <view class="recordList">
+      <view>
+        <text>助力好友成功办卡</text>
+        <time>2018-05-07 18:05:26</time>
+      </view>
+      <label>+50</label>
+    </view>
+    <view class="recordList">
+      <view>
+        <text>助力好友成功办卡</text>
+        <time>2018-05-07 18:05:26</time>
+      </view>
+      <label>+50</label>
+    </view>
+    <view class="recordList">
+      <view>
+        <text>助力好友成功办卡</text>
+        <time>2018-05-07 18:05:26</time>
+      </view>
+      <label>+50</label>
+    </view>
+  </view>
+</view>

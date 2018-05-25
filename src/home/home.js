@@ -1,13 +1,14 @@
 import config from '../../config'
 const app = getApp()
+import { resetLogin } from '../../layouts/assets/javascript/bindMethods.js'
 
 Page({
   data: {
+    access_token: '',
     isAccess_token: true,
     portraitPath: '',
     rankingsList: [],
     userShareGroupsList: [],
-    access_token: '',
     isDefault: true,
     isRankings: true,
     isGroupsInit: true,
@@ -15,7 +16,6 @@ Page({
     isGroup: true,
     isViewDrawing: true,
     isGroupPK: true
-
   },
   onLoad: function (options) {
     const that = this
@@ -26,54 +26,12 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-
-    // 展示本地存储能力
     const access_token = wx.getStorageSync('access_token') || ''
-    // wx.setStorageSync('logs', logs)
-    if (access_token == '') {
-      // 登录
-      wx.login({
-        success: res => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          if (res.code) {
-            // 发起网络请求
-            wx.request({
-              url: config.host + '/v1/users/wechat_login',
-              method: 'POST',
-              data: {
-                code: res.code
-              }, success: function (res) {
-                wx.setStorage({
-                  key: "access_token",
-                  data: res.data.access_token
-                })
-                that.setData({
-                  access_token: res.data.access_token,
-                })
-                if (options.open_gid) {
-                  that.getGroupsInfo(options.open_gid)
-                // 通过群内转发进入的用户
-                } else if (app.globalData.shareEncryptedData && app.globalData.shareIv) {
-                  that.uploadGroupInfo(app.globalData.shareEncryptedData, app.globalData.shareIv)
-                } else {
-                  // 获取群列表 如果当前用户超过1个说明分享过群
-                  that.loginUserShareGroups()
-                }
-              }
-            })
-          } else {
-            // console.log('登录失败！' + res.errMsg)
-          }
-        },
-        fail: res => {
-          wx.showToast(res);
-        }
-      })
-    } else {
+    if (access_token != '') {
       that.setData({
-        access_token: access_token,
+        access_token: access_token
       })
-      if (options.open_gid) {
+      if (options && options.open_gid) {
         that.getGroupsInfo(options.open_gid)
       // 通过群内转发进入的用户
       } else if (app.globalData.shareEncryptedData && app.globalData.shareIv) {
@@ -82,23 +40,9 @@ Page({
         // 获取群列表 如果当前用户超过1个说明分享过群
         that.loginUserShareGroups()
       }
+    } else {
+      resetLogin(that)
     }
-    // wx.login({
-    //   success: res => {
-    //     if (res.code) {
-    //       wx.request({
-    //         url: config.host + '/v1/users/wechat_login',
-    //         method: 'POST',
-    //         data: {
-    //           code: res.code
-    //         }, success: function (res) {
-    //
-    //         }
-    //       })
-    //     } else {}
-    //   },
-    //   fail: res => {}
-    // })
   },
   // 分享
   onShareAppMessage: function (res) {
@@ -139,7 +83,12 @@ Page({
         'iv': iv
       }),
       success: function (res) {
+        if (res.statusCode == '401') {
+          resetLogin(that)
+        }
         that.getGroupsInfo(res.data.open_gid)
+
+      }, fail: function (e) {
       }
     })
   },
@@ -157,6 +106,9 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
+        if (res.statusCode == '401') {
+          resetLogin(that)
+        }
         that.setData({
           isDefault: res.data.is_has_test,
           isRankings: false,
@@ -167,10 +119,8 @@ Page({
           isGroupsInit: true
           // isRankings: res.data.is_has_test
         })
-        // console.log(res)
       },
       fail: function(res) {
-
       }
     })
   },
@@ -200,6 +150,9 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
+        if (res.statusCode == '401') {
+          resetLogin(that)
+        }
         if (res.data.user_share_groups && res.data.user_share_groups.length > 0) {
           that.setData({
             userShareGroupsList: res.data.user_share_groups

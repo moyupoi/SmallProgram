@@ -1,0 +1,46 @@
+page {
+  background: #F2F2F2;
+}
+.friendsHelpList {
+  width: 100%;
+  height: 100%;
+}
+.inviterList {
+
+}
+.inviterList .item {
+  height: 200rpx;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1rpx solid #F2F2F2;
+}
+.inviterList .item image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  display: block;
+  float: left;
+  margin: 40rpx 20rpx 0 40rpx;
+}
+.inviterList .item view {
+  margin-top: 50rpx;
+}
+.inviterList .item view text {
+  font-size: 24rpx;
+  color: #000;
+  display: block;
+  margin-bottom: 16rpx;
+}
+.inviterList .item view time {
+  font-size: 24rpx;
+  color: #999999;
+  display: block;
+}
+.inviterList .item label {
+  position: absolute;
+  font-size: 30rpx;
+  color: red;
+  top: 70rpx;
+  right: 30rpx;
+}

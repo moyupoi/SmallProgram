@@ -1,14 +1,19 @@
 {
   "pages": [
-    "src/progressQuery/progressQuery",
-    "src/throughputRate/throughputRate",
     "src/home/home",
+    "src/friendsHelpRecord/friendsHelpRecord",
+    "src/personalCenter/personalCenter",
+
+    "src/throughputRate/throughputRate",
+    "src/money/money",
+    "src/friendsHelpList/friendsHelpList",
+    "src/friendsHelp/friendsHelp",
+    "src/progressQuery/progressQuery",
     "src/bankList/bankList",
     "src/bank/bank",
     "src/testing/testing",
     "src/shareGroups/shareGroups",
-    "src/cardQuestion/cardQuestion",
-    "src/screenshot/screenshot"
+    "src/cardQuestion/cardQuestion"
   ],
   "window": {
     "backgroundTextStyle": "light",

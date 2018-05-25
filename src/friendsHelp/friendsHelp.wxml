@@ -1,0 +1,13 @@
+<view class="friendsHelp">
+  <view class="banner">
+    <open-data type="userAvatarUrl" class="portrait" id="portrait"></open-data>
+    <open-data type="userNickName" class="userName"></open-data>
+  </view>
+  <view class="helpDescribe">
+    <view class="title">
+      <text>{{helpInit.say_msg}}</text>
+    </view>
+    <image src="{{helpInit.avatar_url}}" class="portrait"></image>
+  </view>
+  <button open-type="getUserInfo" class="helpBtn" bindgetuserinfo="helpBtn">助Ta一臂之力</button>
+</view>

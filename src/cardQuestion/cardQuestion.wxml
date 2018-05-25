@@ -1,6 +1,6 @@
 <view class="container">
   <view class="question" hidden="{{!question}}">
-    <lable>{{selectCardTest.length}}步选卡 不纠结</lable>
+    <label>{{selectCardTest.length}}步选卡 不纠结</label>
     <view class="selectTitle">
       <text>{{index}}</text>
       <text>{{selectCardIndex + 1}}/{{selectCardTest.length}}选择特色(多选)</text>

@@ -1,0 +1,7 @@
+page {
+  background: #F2F2F2;
+}
+.heapRecord {
+  width: 100%;
+  height: 100%;
+}

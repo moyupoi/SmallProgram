@@ -2,27 +2,36 @@
   <view class="rateModular">
     <view class="passingRate">
       <text>当前申请通过率</text>
-      <label>61%</label>
-      <text>+</text>
-      <text class="percentage">3.5%</text>
+      <label>{{ inviteData.pass_rate * 100}}%</label>
+      <text class="percentage" style="display:{{ inviteData.increase_pass_rate * 100 <= 0 ? 'none' : 'block' }}">+{{ inviteData.increase_pass_rate * 100 }}%</text>
     </view>
     <view class="friendsRate">
       <text>邀请好友助力，提升申请通过率</text>
       <image src="./images/arrow.png"></image>
-      <label>79%</label>
+      <label>{{ inviteData.max_increase_pass_rate * 100 }}%</label>
     </view>
   </view>
   <view class="giveModular">
     <text>邀请好友助力，申请信用卡完成激活</text>
     <text>您可以获得</text>
-    <label>50</label>
+    <label>{{ inviteData.apply_reward }}</label>
     <p>元</p>
     <text>助力您的好友，最高可获得</text>
-    <label>20</label>
+    <label>{{ inviteData.help_reward }}</label>
     <p>元</p>
+  </view>
+  <view class="record">
+    <text class="title">助力记录({{ inviteData.current_invite_help_count }}/{{ inviteData.total_invite_help_count }})</text>
+    <view wx:for="{{ inviteData.invite_help_records }}" wx:key="index">
+      <view class="recordList">
+        <image src="{{item.avatar_url}}"></image>
+        <label>{{item.name}}</label>
+        <text>+{{item.increase_pass_rate * 100}}</text>
+      </view>
+    </view>
   </view>
   <view class="applyModular">
     <button bindtap="applyCard">直接申请</button>
-    <button bindtap="friendsHelp">邀请好友助力</button>
+    <button open-type="share" bindtap="friendsHelp">邀请好友助力</button>
   </view>
 </view>

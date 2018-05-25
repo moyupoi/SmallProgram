@@ -1,0 +1,28 @@
+<view class="friendsHelpList">
+  <view class="inviterList">
+    <view class="item">
+      <image src="./images/temp.png"></image>
+      <view>
+        <text>不服输不舒服斯基</text>
+        <time>2018-05-07 18:05:26</time>
+      </view>
+      <label>+2.7%</label>
+    </view>
+    <view class="item">
+      <image src="./images/temp.png"></image>
+      <view>
+        <text>不服输不舒服斯基</text>
+        <time>2018-05-07 18:05:26</time>
+      </view>
+      <label>+2.7%</label>
+    </view>
+    <view class="item">
+      <image src="./images/temp.png"></image>
+      <view>
+        <text>不服输不舒服斯基</text>
+        <time>2018-05-07 18:05:26</time>
+      </view>
+      <label>+2.7%</label>
+    </view>
+  </view>
+</view>
