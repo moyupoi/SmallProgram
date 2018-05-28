@@ -26,7 +26,7 @@ Page({
       method: 'GET',
       data: {
         page: that.data.page,
-        per_page: 5
+        per_page: 20
       },
       header: {
         'Authorization': that.data.access_token,
@@ -44,12 +44,12 @@ Page({
             helpInit: bankCards,
             page: that.data.page + 1
           })
-          console.log(res.data)
+          // console.log(res.data)
         } else {
           that.setData({
             helpInit: bankCards
           })
-          console.log(res.data)
+          // console.log(res.data)
         }
       },
       fail: function(res) {

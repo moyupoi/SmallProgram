@@ -19,8 +19,15 @@ page {
   text-align: left;
   margin-bottom: 40rpx;
 }
+.testing .selCar {
+  text-align: center;
+}
+.testing .selCar .serialNumber {
+  display: inline-block;
+  color: #00DBB2;
+}
 .testing .selCar .title {
-  display: block;
+  display: inline-block;
   color: #666B6B;
 }
 .testing .selCar label {

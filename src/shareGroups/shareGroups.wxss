@@ -51,3 +51,56 @@ page {
 .comparison .userGroup view .groupName {
   margin-bottom: 10rpx;
 }
+.rankings {
+  width: 666rpx;
+  height: 600rpx;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+.rankings .slide {
+  padding: 0 20rpx;
+  overflow: auto;
+  height: 500rpx;
+}
+.rankings .rankingList {
+
+}
+.rankings .title {
+  display: block;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #494949;
+  text-align: center;
+}
+.rankings .rankingList .rankingItem {
+  margin-bottom: 15rpx;
+}
+.rankings .rankingList .rankingItem .rankingImg {
+  width: 80rpx;
+  height: 80rpx;
+  display: inline-block;
+  margin-right: 15rpx;
+}
+.rankings .rankingList .rankingItem .portrait {
+  width: 80rpx;
+  height: 80rpx;
+  display: inline-block;
+  margin-right: 30rpx;
+  border-radius: 50rpx;
+}
+.rankings .rankingList .rankingItem view {
+  display: inline-block;
+  vertical-align: top;
+}
+.rankings .rankingList .rankingItem view text {
+  font-size: 28rpx;
+  display: block;
+  color: #7D7D7D;
+  font-weight: 400;
+}
+.rankings .rankingList .rankingItem view text:nth-of-type(2) {
+  color: #333333;
+}

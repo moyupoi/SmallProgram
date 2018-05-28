@@ -3,7 +3,8 @@
   <view class="testing" hidden="{{!question}}">
     <view wx:for="{{creditAmountTest}}" wx:key="index" class="selCar" data-index="{{index}}">
       <view style="display: {{creditAmountIndex==index? 'block':'none'}}">
-        <text class="title">{{item.title}}</text>
+        <text class="serialNumber">{{index + 1}}</text>
+        <text class="title">/{{creditAmountTest.length}} {{item.title}}</text>
         <label wx:for="{{item.items}}" wx:key="{{items}}" data-index="{{index}}" data-category="single" bindtap="selectTap" class="{{item.checked == true?'isChecked':''}}">
           <text>{{item.name}}</text>
         </label>

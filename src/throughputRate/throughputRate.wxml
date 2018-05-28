@@ -2,9 +2,9 @@
   <view class="rateModular">
     <view class="passingRate">
       <image src="./images/progress.png"></image>
-      <label>{{ inviteData.pass_rate * 100}}%</label>
+      <label>{{ pass_rate }}%</label>
       <text>当前申请通过率</text>
-      <text class="percentage" style="display:{{ inviteData.increase_pass_rate * 100 <= 0 ? 'none' : 'block' }}">+{{ inviteData.increase_pass_rate * 100 }}%</text>
+      <text class="percentage" style="display:{{ inviteData.increase_pass_rate * 100 <= 0 ? 'none' : 'block' }}">+{{ increase_pass_rate }}%</text>
     </view>
     <view class="friendsRate">
       <text>邀5名好友助力，提升申请通过率</text>

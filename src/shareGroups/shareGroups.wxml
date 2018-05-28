@@ -3,9 +3,35 @@
     <open-data type="userAvatarUrl" class="portrait"></open-data>
     <open-data type="userNickName" class="userName"></open-data>
   </view>
+  <view class="rankings" wx:if="{{rankingsList.length > 0}}" hidden="{{isRankings}}">
+    <text class="title">群好友排行榜</text>
+    <view class="slide" >
+      <view class="rankingList" wx:for="{{rankingsList}}" wx:key="index">
+        <view class="rankingItem">
+          <block wx:if="{{index == 0}}">
+            <image src="./images/ranking1.png" class="rankingImg"></image>
+          </block>
+          <block wx:elif="{{index == 1}}">
+            <image src="./images/ranking2.png" class="rankingImg"></image>
+          </block>
+          <block wx:elif="{{index == 2}}">
+            <image src="./images/ranking3.png" class="rankingImg"></image>
+          </block>
+          <block wx:else>
+            <image src="" class="rankingImg"></image>
+          </block>
+          <image src="{{item.avatar_url}}" class="portrait"></image>
+          <view>
+            <text>{{item.name}}</text>
+            <text>信用等价物是: {{item.answer_name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
   <view class="groupsInit">
     <view class="comparison" wx:for="{{userShareGroupsList}}" wx:key="index">
-      <navigator url="/src/home/home?open_gid={{item.open_gid}}" hover-class="none" class="userGroup">
+      <navigator url="/src/home/home?open_gid={{item.open_gid}}" hover-class="none" class="userGroup" bindtap="userGroup" data-open_gid="{{item.open_gid}}">
         <open-data type="userAvatarUrl" open-gid="{{item.open_gid}}" class="groupPortrait"></open-data>
         <view>
           <open-data type="groupName" open-gid="{{item.open_gid}}" class="groupName"></open-data>

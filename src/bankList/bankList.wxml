@@ -2,8 +2,8 @@
 <view class="container" wx:if="{{!isFetching}}">
   <text class="title">{{bankListText}}</text>
   <swiper class="bankList" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}">
-    <swiper-item class="cardItem" data-url="{{item.apply_url}}" bindtap="cardItem" wx:for="{{movies}}" wx:key="index">
-      <view>
+    <swiper-item class="cardItem" data-url="{{item.apply_url}}" wx:for="{{movies}}" wx:key="index">
+      <navigator url="/src/throughputRate/throughputRate?cardid={{item.id}}" hover-class="none">
         <view class="quota">
           <image src="{{item.image_url}}"></image>
           <text>最高额度: </text>
@@ -16,7 +16,7 @@
             <label class="type">{{tag}}</label>
           </block>
         </view>
-      </view>
+      </navigator>
     </swiper-item>
   </swiper>
   <label class="title">{{themeCardText}}</label>

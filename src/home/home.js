@@ -11,7 +11,6 @@ Page({
     userShareGroupsList: [],
     isDefault: true,
     isRankings: true,
-    isGroupsInit: true,
     isTesting: true,
     isGroup: true,
     isViewDrawing: true,
@@ -26,15 +25,15 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
+    that.setData({
+      isGroup: true
+    })
     const access_token = wx.getStorageSync('access_token') || ''
     if (access_token != '') {
       that.setData({
         access_token: access_token
       })
-      if (options && options.open_gid) {
-        that.getGroupsInfo(options.open_gid)
-      // 通过群内转发进入的用户
-      } else if (app.globalData.shareEncryptedData && app.globalData.shareIv) {
+      if (app.globalData.shareEncryptedData && app.globalData.shareIv) {
         that.uploadGroupInfo(app.globalData.shareEncryptedData, app.globalData.shareIv)
       } else {
         // 获取群列表 如果当前用户超过1个说明分享过群
@@ -68,6 +67,9 @@ Page({
       }
     }
   },
+  // onShow: function () {
+  //
+  // },
   // 解析信息
   uploadGroupInfo: function (encryptedData, iv) {
     var that = this
@@ -110,12 +112,11 @@ Page({
         }
         that.setData({
           isDefault: res.data.is_has_test,
-          isRankings: false,
+          // isRankings: false,
           isViewDrawing: !res.data.is_has_test,
           isTesting: res.data.is_has_test,
           rankingsList: res.data.users,
-          isGroup: false,
-          isGroupsInit: true
+          isGroup: false
           // isRankings: res.data.is_has_test
         })
       },
@@ -131,11 +132,6 @@ Page({
   toBankList: function () {
     wx.navigateTo({
       url:'/src/bankList/bankList'
-    })
-  },
-  group: function () {
-    wx.navigateTo({
-      url:'/src/shareGroups/shareGroups'
     })
   },
   // 搜索进入程序 判断用户分享过哪些群
@@ -163,7 +159,7 @@ Page({
           isViewDrawing: !res.data.is_has_test,
           isTesting: res.data.is_has_test,
           isGroupPK: !res.data.is_has_test,
-          isGroupsInit: false
+          isGroup: true
         })
       }
     })
@@ -172,5 +168,10 @@ Page({
     wx.navigateTo({
       url:'/src/testing/testing?viewDrawing=true'
     })
+  },
+  userGroup: function (e) {
+    if (e && e.currentTarget && e.currentTarget.dataset && e.currentTarget.dataset.open_gid) {
+      this.getGroupsInfo(e.currentTarget.dataset.open_gid)
+    }
   }
 })

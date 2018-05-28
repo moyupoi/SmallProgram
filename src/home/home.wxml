@@ -7,7 +7,7 @@
     <view class="describe" hidden="{{isDefault}}">
       <text>暂无好友参与 \n做一个勇于尝试的人吧</text>
     </view>
-    <view class="rankings" wx:if="{{rankingsList.length > 0}}" hidden="{{isRankings}}">
+    <view class="rankings" wx:if="{{rankingsList.length > 0}}" hidden="{{isGroup}}">
       <text class="title">群好友排行榜</text>
       <view class="slide" >
         <view class="rankingList" wx:for="{{rankingsList}}" wx:key="index">
@@ -33,9 +33,9 @@
         </view>
       </view>
     </view>
-    <view class="groupsInit" hidden="{{isGroupsInit}}">
+    <view class="groupsInit" hidden="{{!isGroup}}">
       <view class="comparison" wx:for="{{userShareGroupsList}}" wx:key="index">
-        <navigator url="/src/home/home?open_gid={{item.open_gid}}" hover-class="none" class="userGroup">
+        <navigator url="/src/home/home" hover-class="none" class="userGroup" bindtap="userGroup" data-open_gid="{{item.open_gid}}">
           <image src="{{item.avatar_url}}"></image>
           <view>
             <open-data type="groupName" open-gid="{{item.open_gid}}" class="groupName"></open-data>
@@ -45,7 +45,7 @@
       </view>
     </view>
     <button bindtap="toTesting" class="testing" hidden="{{isTesting}}">测测我的信用等价物</button>
-    <button bindtap="group" class="group" hidden="{{isGroup}}">我参与的其他群</button>
+    <button bindtap="loginUserShareGroups" class="group" hidden="{{isGroup}}">我参与的其他群</button>
     <button bindtap="viewDrawing" class="viewDrawing" hidden="{{isViewDrawing}}">查看我的信用等价物</button>
     <button open-type="share" class="groupPK" hidden="{{isGroupPK}}">发起群PK</button>
     <!-- <view hidden="{{rankings}}"></view> -->

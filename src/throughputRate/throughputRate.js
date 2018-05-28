@@ -4,9 +4,10 @@ const app = getApp()
 Page({
   data: {
     access_token: '',
-    // bankCardId: '5af563304f14bf4bb8aea16b',
     bankCardId: '',
-    inviteData: ''
+    inviteData: '',
+    pass_rate: 0,
+    increase_pass_rate: 0,
   },
   onLoad: function (options) {
     const that = this
@@ -14,8 +15,7 @@ Page({
     if (access_token != '') {
       that.setData({
         access_token: access_token,
-        // bankCardId: options.cardid
-        bankCardId: "5af563304f14bf4bb8aea16b"
+        bankCardId: options.cardid
       })
       that.inviteInit()
     }
@@ -34,7 +34,9 @@ Page({
       },
       success: function (res) {
         that.setData({
-          inviteData: res.data
+          inviteData: res.data,
+          pass_rate: parseInt(res.data.pass_rate * 100),
+          increase_pass_rate: parseInt(res.data.increase_pass_rate * 100)
         })
       },
       fail: function(res) {
@@ -56,26 +58,20 @@ Page({
         if (res.confirm) {
           // 邀请助力 弹出分享
         } else if (res.cancel) {
-          // 直接申请 复制链接到剪切板
-          wx.showActionSheet({
-            itemList: ['卡片地址复制到剪切板'],
+          wx.setClipboardData({
+            data: that.data.inviteData.apply_url,
             success: function(res) {
-              if (res.tapIndex == 0) {
-                wx.setClipboardData({
-                  data: that.data.inviteData.apply_url,
-                  success: function(res) {
-                    wx.getClipboardData ({
-                      success: function(res) {
-                        wx.showToast({
-                          title: "复制专属链接在浏览器打开",
-                        })
-                      }
-                    })
-                  }
-                })
-              }
-            },
-            fail: function(res) {}
+              wx.getClipboardData ({
+                success: function(res) {
+                  wx.showModal({
+                    title: '提示',
+                    content: '您已成功复制专属链接，请到浏览器地址栏粘贴打开，即可申请',
+                    showCancel: false,
+                    success: function(res) {}
+                  })
+                }
+              })
+            }
           })
         }
       }

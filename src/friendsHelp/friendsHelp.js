@@ -65,7 +65,7 @@ Page({
             confirmText: '回到首页',
             success: function(res) {
               if (res.confirm) {
-                wx.navigateTo({
+                wx.switchTab({
                   url:'/src/home/home'
                 })
               } else if (res.cancel) {
