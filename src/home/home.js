@@ -87,6 +87,7 @@ Page({
       success: function (res) {
         if (res.statusCode == '401') {
           resetLogin(that)
+          return
         }
         that.getGroupsInfo(res.data.open_gid)
       }, fail: function (e) {
@@ -109,6 +110,7 @@ Page({
       success: function (res) {
         if (res.statusCode == '401') {
           resetLogin(that)
+          return
         }
         that.setData({
           isDefault: res.data.is_has_test,
@@ -147,6 +149,7 @@ Page({
       success: function (res) {
         if (res.statusCode == '401') {
           resetLogin(that)
+          return
         }
         if (res.data.user_share_groups && res.data.user_share_groups.length > 0) {
           that.setData({

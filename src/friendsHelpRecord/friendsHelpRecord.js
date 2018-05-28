@@ -33,6 +33,7 @@ Page({
       success: function (res) {
         if (res.statusCode == '401') {
           resetLogin(that)
+          return
         }
         that.setData({
           inviteList: res.data
@@ -54,6 +55,7 @@ Page({
       success: function (res) {
         if (res.statusCode == '401') {
           resetLogin(that)
+          return
         }
         that.setData({
           helpList: res.data

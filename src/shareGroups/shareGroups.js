@@ -56,6 +56,7 @@ Page({
       success: function (res) {
         if (res.statusCode == '401') {
           resetLogin(that)
+          return
         }
         that.setData({
           isDefault: res.data.is_has_test,

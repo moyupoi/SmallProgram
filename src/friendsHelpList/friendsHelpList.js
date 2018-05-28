@@ -36,7 +36,8 @@ Page({
         let bankCards = res.data
         console.log(res.data)
         if (res.statusCode == '401') {
-          resetLogin
+          resetLogin(that)
+          return
         }
         if (that.data.page > 1) {
           bankCards = that.data.concat(bankCards)

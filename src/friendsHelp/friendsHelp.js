@@ -32,7 +32,8 @@ Page({
       },
       success: function (res) {
         if (res.statusCode == '401') {
-          resetLogin
+          resetLogin(that)
+          return
         }
         that.setData({
           helpInit: res.data
@@ -56,7 +57,8 @@ Page({
         },
         success: function (res) {
           if (res.statusCode == '401') {
-            that.resetLogin()
+            resetLogin(that)
+            return
           }
           wx.showModal({
             title: '提示',

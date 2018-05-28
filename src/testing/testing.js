@@ -378,7 +378,7 @@ Page({
           // console.log(res)
         }
       })
-    }, 500)
+    }, 1000)
     that.setData({
       isFetching: false
     })
