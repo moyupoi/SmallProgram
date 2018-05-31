@@ -212,6 +212,7 @@ Page({
           isCardBag: true,
           isInsert: true,
           cardNumber: res.data.user_credit_card.card_number,
+          bankId: res.data.user_credit_card.bank_id,
           pickerBanksIndex: bankIdIndex,
           repaymentDateIndex: res.data.user_credit_card.bill_date - 1,
           statementDateIndex: res.data.user_credit_card.due_date - 1,
