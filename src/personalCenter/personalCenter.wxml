@@ -8,7 +8,7 @@
       <image src="./images/icon01.png"></image>
       <text>进度查询</text>
     </navigator>
-    <navigator hover-class="none" bindtap="queryProject">
+    <navigator url="/src/cardBag/cardBag" hover-class="none">
       <image src="./images/icon02.png"></image>
       <text>还款日查询</text>
     </navigator>

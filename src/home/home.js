@@ -14,7 +14,8 @@ Page({
     isTesting: true,
     isGroup: true,
     isViewDrawing: true,
-    isGroupPK: true
+    isGroupPK: true,
+    isTakeUp: true
   },
   onLoad: function (options) {
     const that = this
@@ -176,5 +177,10 @@ Page({
     if (e && e.currentTarget && e.currentTarget.dataset && e.currentTarget.dataset.open_gid) {
       this.getGroupsInfo(e.currentTarget.dataset.open_gid)
     }
+  },
+  takeUp: function (e) {
+    this.setData({
+      isTakeUp: !this.data.isTakeUp
+    })
   }
 })

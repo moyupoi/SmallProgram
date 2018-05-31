@@ -42,6 +42,23 @@ page {
   padding-top: 22rpx;
   margin-top: 40rpx;
 }
+.content .takeUp {
+  background: #fff;
+  width: 650rpx;
+  height: 60rpx;
+  font-size: 26rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #00DBB2;
+  margin-top: 30rpx;
+}
+.content .takeUpImg {
+  width: 60rpx;
+  height: 34rpx;
+  margin: 60rpx auto;
+  display: block;
+}
 .content .testing, .content .group, .content .groupPK, .content .viewDrawing {
   background: #00DBB2;
   color: #fff;

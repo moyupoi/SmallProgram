@@ -176,7 +176,7 @@ Page({
               wx.getClipboardData ({
                 success: function(res) {
                   wx.showToast({
-                    title: "复制专属链接在浏览器打开",
+                    title: "复制专属链接在浏览器打开"
                   })
                 }
               })

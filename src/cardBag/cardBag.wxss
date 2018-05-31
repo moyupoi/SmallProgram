@@ -1,0 +1,269 @@
+page {
+  background: #FFF;
+}
+button::after {
+  border: 0;
+}
+.cardBag {
+  width: 100%;
+  height: 100%;
+}
+.cardBagShow {
+  padding: 40rpx 32rpx;
+}
+.cardBagShow .returnHome {
+  width: 100%;
+  color: #fff;
+  background: #00DBB2;
+  border-radius: 10rpx;
+  display: inline-block;
+  margin-bottom: 20rpx;
+}
+.cardBagShow .addCareBtn {
+  width: 108rpx;
+  height: 108rpx;
+  display: block;
+  margin: 50rpx auto 20rpx auto;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD4AAAA+CAMAAABEH1h2AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAA8UExURUxpcQLkwQfkvxHlwinhwDHdvC3evTjixjDawi/fvxTfuwfoxQLqyAHoxAHetgHiuwHlwALuzf///7X37ftdR7cAAAAMdFJOUwDoyXdULj4JFSCSqMtxSG0AAAKUSURBVEjHtZeLkoMgDEWXN0otVf//XzcEiKCg1dmNtlLCubnQjpWfn38Js4u7rBaOs9c8vxh3Qt9QgJHSsbkK5uR3AjBK7NikIK4FQmU+d4JfOTBGdWEUUCd8KP2aT+Mlu7wxVlzQEMJ2eGMdyM/hy0rndmzn7Jq82dG1j7K/yQfnEIjFca/9Necb/o2VmDwLyso9Dz9SlofE6fbQEEzX6w8T581qc1uB24qP1q/MF1HZbxcPsa7t/qp8WvVGLEsnUay+MQOu2wRHPKcSLzpTP1zYQOVh5gURmhMGNACfpoLCHDZo9lDcEZKwPAzNF3Ib7nJ5Ywc2dWJZehk2WEPe7+NTcg/exyf4GN2Dd/cEd9E94PxDMYUTkqkBeOz4FFccN/GMK0YpHJSVMk7C6Ro1mCrwTixLN7Xhdf+6dGKtxyV8eIoPCX9o/k9wq8IX5/H44Cu8+Rbut/yH09K5PNrHAZ7UAPf5KPvhdISP2E2RhoVrwOlzmfN+JFxSylc63i+Lr2S3ppcZHzTzdXya+JaCN6bpN6+578QRz8EzDt+cuI8LlW43MPmD+0ucaUV3m0GPd/FR080K3EP5Nx3h9LG1rqnhizwcUJzu1KF8Mfv3G09CSHUb4QUVT+X5myIaiK3cUwcvisfykqoUKrmvcgEpWRTHv0ilRVn+UK8KEZa9/Iu1g5LjcVxbZJRqqJ4vDNrn76+Co/X944X6kgda2f3DYbCvW/6PzvXO+h1etOnMi9MJ8C6Nywe8HFkPZqPs0lj/TCDDtv9IjQaCwGEKPMBY2pxtB2wSkLAT4uiCcdgLyQTbq+0EGEgCVQQ4lP5iNxMEQCFrhJb6Ds4CoAASOeCDtbd2cqBgUWTAxpON5NNNKGmkox+/oX6OyTJDqmYAAAAASUVORK5CYII=') no-repeat;
+  background-size: 108rpx 108rpx;
+}
+.cardBagShow .addCareDescribe {
+  font-size: 32rpx;
+  color: #333333;
+  display: block;
+  text-align: center;
+}
+.cardBagShow .cardList .item {
+  height: 260rpx;
+  padding: 0 50rpx;
+  margin-bottom: 32rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  position: relative;
+}
+.cardBagShow .cardList .item .updateCardInfo {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
+  position: absolute;
+  left: 0;
+}
+.cardBagShow .cardList .item .name {
+  height: 60rpx;
+  overflow: hidden;
+  margin-top: 36rpx;
+}
+.cardBagShow .cardList .item .name .logo {
+  width: 50rpx;
+  height: 50rpx;
+  display: block;
+  float: left;
+  background: #fff;
+  border-radius: 50rpx;
+}
+.cardBagShow .cardList .item .name text {
+  font-size: 32rpx;
+  color: #fff;
+  display: block;
+  float: left;
+  margin: 4rpx 0 0 20rpx;
+}
+.cardBagShow .cardList .item .name .arrow {
+  width: 20rpx;
+  height: 28rpx;
+  display: block;
+  float: right;
+}
+.cardBagShow .cardList .item .card {
+  height: 74rpx;
+  overflow: hidden;
+}
+.cardBagShow .cardList .item .card text:nth-of-type(1) {
+  font-size: 52rpx;
+  color: #fff;
+  float: left;
+}
+.cardBagShow .cardList .item .card text:nth-of-type(2) {
+  font-size: 52rpx;
+  color: #fff;
+  float: left;
+}
+.cardBagShow .cardList .item .card image:nth-of-type(1) {
+  width: 88rpx;
+  height: 16rpx;
+  display: block;
+  float: left;
+  margin: 30rpx 40rpx 0 40rpx;
+}
+.cardBagShow .cardList .item .card image:nth-of-type(2) {
+  width: 88rpx;
+  height: 16rpx;
+  display: block;
+  float: left;
+  margin: 30rpx 40rpx 0 0;
+}
+.cardBagShow .cardList .item .date {
+  height: 68rpx;
+  margin-top: 20rpx;
+}
+.cardBagShow .cardList .item .layer {
+  width: 100%;
+  height: 68rpx;
+  background: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.cardBagShow .cardList .item .date text:nth-of-type(1) {
+  font-size: 24rpx;
+  color: #fff;
+  display: block;
+  float: left;
+  margin-top: 20rpx;
+}
+.cardBagShow .cardList .item .date text:nth-of-type(2) {
+  font-size: 24rpx;
+  color: #fff;
+  display: block;
+  float: right;
+  margin-top: 20rpx;
+}
+.addCardBag {
+  padding: 0 0 0 32rpx;
+}
+.addCardBag .inputView {
+  height: 114rpx;
+  border-bottom: 1rpx solid #EAEAEA;
+}
+.addCardBag .carTop text {
+  height: 128rpx;
+  background: #F9F9F9;
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 128rpx;
+  margin-left: 20rpx;
+  position: relative;
+}
+.addCardBag .carTop text::after {
+  content: '';
+  height: 36rpx;
+  width: 10rpx;
+  background: #00DBB2;
+  position: absolute;
+  top: 6rpx;
+  left: -25rpx;
+}
+.addCardBag .carTop image {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  float: right;
+  margin: 44rpx 32rpx 0;
+}
+.addCardBag .inputView text {
+  display: inline-block;
+  font-size: 32rpx;
+  line-height: 114rpx;
+  color: #999999;
+}
+.addCardBag .inputView label {
+  width: 594rpx;
+  height: 114rpx;
+  font-size: 32rpx;
+  line-height: 114rpx;
+  float: right;
+  display: inline-block;
+  color: #333333;
+}
+.addCardBag .inputView input {
+  width: 594rpx;
+  height: 114rpx;
+  float: right;
+  display: inline-block;
+  font-size: 32rpx;
+  color: #333333;
+}
+.addCardBag .inputView .pickerBanks, .addCardBag .inputView .repaymentDate, .addCardBag .inputView .statementDate {
+  width: 594rpx;
+  height: 114rpx;
+  float: right;
+  display: inline-block;
+  font-size: 32rpx;
+  color: #333333;
+}
+.placeholder {
+  font-size: 26rpx;
+  font-weight: 400;
+  line-height: 114rpx;
+}
+.addCardBag .cancel {
+  width: 330rpx;
+  color: #fff;
+  background: #00DBB2;
+  border-radius: 10rpx;
+  margin: 40rpx 0;
+  display: inline-block;
+}
+.addCardBag .insertCardData {
+  width: 330rpx;
+  color: #fff;
+  background: #00DBB2;
+  border-radius: 10rpx;
+  margin: 40rpx 0;
+  display: inline-block;
+  margin-left: 40rpx;
+}
+.help {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  z-index: 999;
+}
+.help .layer {
+
+}
+.help .detailed {
+  padding: 60rpx 40rpx;
+  background: #fff;
+  width: 560rpx;
+  height: 828rpx;
+  border-radius: 10rpx;
+  margin: 118rpx auto 48rpx auto;
+  overflow: hidden;
+}
+.help .detailed label {
+  font-size: 32rpx;
+  color: #999999;
+  display: block;
+  margin-bottom: 20rpx;
+}
+.help .detailed .title {
+  color: #333333;
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 40rpx;
+}
+.help .detailed text {
+  font-size: 28rpx;
+  display: block;
+  margin-bottom: 40rpx;
+}
+.help .detailed .notes {
+  color: #FF5E2F;
+}
+.help .detailed text:nth-of-type(3) {
+  margin-top: 80rpx;
+}
+.help .close {
+  width: 68rpx;
+  height: 68rpx;
+  display: block;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiBAMAAADIaRbxAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAtUExURczMzExpcc3NzczMzMzMzM7Ozs3NzdDQ0MrKytDQ0NDQ0MvLy7+/v8zMzM7OzhjnouAAAAAPdFJOU6sAZaKTFnY3TjEhgQimbvDmZSoAAADXSURBVCjPYxAEAZmiLcbe6gfBbAYQIZXLAALXFsJERB8wQABfIFRkMgMMWEJEJBgQoBEs0oAkwgESkWRABhOBIsEoIqZAkQcoInyCDFIMqGAhgxiaSCLDWRDlqgAkmEJAzDsMBWAJISChCFbOzgCSZWASVABjEJNhA1i3ohAIgQA3gwMDRJESRAkDC4MBxApFQYgSBmaYCLtgAUzEAU0NC9RkhDncENuR7GKCuBDJPewQXyC5+Q7Ep0j+SsQSGpghhiVUMUMeM3awxCBmLGNJCZipBTVFAQBnLilxs1pYdwAAAABJRU5ErkJggg==') no-repeat;
+  background-size: 68rpx 68rpx;
+  margin: 0 auto;
+}

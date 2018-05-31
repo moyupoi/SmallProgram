@@ -20,6 +20,7 @@
   height: 100%;
   z-index: 999;
   text-align: center;
+  background: #fff;
 }
 .Loading image {
   width: 200rpx;

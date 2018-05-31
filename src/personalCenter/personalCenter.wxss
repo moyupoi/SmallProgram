@@ -31,31 +31,53 @@ page {
 .queryProject navigator {
   height: 150rpx;
   border-bottom: 1rpx solid #F2F2F2;
+  position: relative;
 }
 .queryProject navigator image {
-  width: 80rpx;
-  height: 80rpx;
+  width: 50rpx;
+  height: 50rpx;
   float: left;
-  margin: 38rpx 30rpx 0 50rpx;
+  margin: 49rpx 30rpx 0 50rpx;
 }
 .queryProject navigator text {
   font-size: 30rpx;
   line-height: 150rpx;
   float: left;
 }
+.queryProject navigator::before {
+  content: '';
+  width: 16rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 65rpx;
+  right: 40rpx;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAMCAYAAACwXJejAAAAAXNSR0IArs4c6QAAAINJREFUGBljPHv2bMP////rGRkZN3NwcIRoa2v/YkADjCA+IYVgRYQUwhXhU4iiCJdCDEXYFDKBBNEB0KfrgWLfgdjxx48fGizoCs6dO6f/79+/vUCFf5mYmDwMDQ0voZgEUwDUyAZVcBRkCNxNyAqYmZk9gSaAFcAV4VMAVkRIAUgRAGJ/YpAW6l+AAAAAAElFTkSuQmCC') no-repeat;
+  background-size: 16rpx 24rpx;
+}
 .feedback {
   background: #fff;
   height: 150rpx;
   margin-top: 20rpx;
+  position: relative;
 }
 .feedback image {
-  width: 80rpx;
-  height: 80rpx;
+  width: 50rpx;
+  height: 50rpx;
   float: left;
-  margin: 38rpx 30rpx 0 50rpx;
+  margin: 49rpx 30rpx 0 50rpx;
 }
 .feedback text {
   font-size: 30rpx;
   line-height: 150rpx;
   float: left;
+}
+.feedback::before {
+  content: '';
+  width: 16rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 65rpx;
+  right: 40rpx;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAMCAYAAACwXJejAAAAAXNSR0IArs4c6QAAAINJREFUGBljPHv2bMP////rGRkZN3NwcIRoa2v/YkADjCA+IYVgRYQUwhXhU4iiCJdCDEXYFDKBBNEB0KfrgWLfgdjxx48fGizoCs6dO6f/79+/vUCFf5mYmDwMDQ0voZgEUwDUyAZVcBRkCNxNyAqYmZk9gSaAFcAV4VMAVkRIAUgRAGJ/YpAW6l+AAAAAAElFTkSuQmCC') no-repeat;
+  background-size: 16rpx 24rpx;
 }

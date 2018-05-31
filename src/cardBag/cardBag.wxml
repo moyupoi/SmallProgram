@@ -1,0 +1,81 @@
+<include src="/layouts/libs/LoadingZ.wxml" wx:if="{{isFetching}}" />
+<view class="cardBag">
+  <view class="cardBagShow" hidden="{{isCardBag}}">
+    <button class="returnHome" bindtap="returnHome" hidden="{{isHome}}">返回</button>
+    <form bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
+      <view class="cardList" wx:for="{{cardBagList}}" wx:key="index">
+        <view class="item" style="background:{{item.bank_color}}">
+          <button formType="submit" class="updateCardInfo" bindtap="updateCardInfo" data-id="{{item.id}}"></button>
+          <view class="name">
+            <image src="{{item.bank_logo_url}}" class="logo"></image>
+            <text>{{item.bank_name}}</text>
+            <image src="./images/arrow.png" class="arrow"></image>
+          </view>
+          <view class="card">
+            <text>{{item.frontNumber}}</text>
+            <image src="./images/spot.png"></image>
+            <image src="./images/spot.png"></image>
+            <text>{{item.afterNumber}}</text>
+          </view>
+          <view class="date">
+            <view class="layer"></view>
+            <text>还款日:{{item.bill_date}}日</text>
+            <text>账单日:{{item.due_date}}日</text>
+          </view>
+        </view>
+      </view>
+      <button formType="submit" class="addCareBtn" bindtap="addCareBtn"></button>
+      <text class="addCareDescribe">添加信用卡</text>
+    </form>
+  </view>
+  <view class="addCardBag" hidden="{{!isCardBag}}">
+    <view class="carTop">
+      <text class="title">信用卡信息</text>
+      <image src="./images/help.png" bindtap="openHelp"></image>
+    </view>
+    <view class="inputView">
+      <text>卡号</text>
+      <input maxlength="16" placeholder="请输入卡号" placeholder-class="placeholder" bindinput="cardNumber" value="{{cardNumber}}"/>
+    </view>
+    <view class="inputView">
+      <text>银行</text>
+      <picker bindchange="bindPickerChange" value="{{pickerBanksIndex}}" range="{{pickerBanks}}" range-key="{{'name'}}" class="pickerBanks">
+        <label class="picker">
+          {{pickerBanks[pickerBanksIndex].name}}
+        </label>
+      </picker>
+    </view>
+    <view class="inputView">
+      <text>还款日</text>
+      <picker bindchange="bindRepaymentDateChange" value="{{repaymentDateIndex}}" range="{{repaymentDate}}" range-key="{{'name'}}" class="repaymentDate">
+        <label class="picker">
+          {{repaymentDate[repaymentDateIndex].name}}
+        </label>
+      </picker>
+    </view>
+    <view class="inputView">
+      <text>账单日</text>
+      <picker bindchange="bindStatementDateChange" value="{{statementDateIndex}}" range="{{statementDate}}" range-key="{{'name'}}" class="statementDate">
+        <label class="picker">
+          {{statementDate[statementDateIndex].name}}
+        </label>
+      </picker>
+    </view>
+    <button bindtap="cancel" class="cancel">取消</button>
+    <button bindtap="insertCardData" class="insertCardData" wx:if="{{!isInsert}}">确认提交</button>
+    <button bindtap="updataCardData" class="insertCardData" wx:if="{{isInsert}}">更新卡片</button>
+    <view class="help" hidden="{{closeHelp}}">
+      <view class="layer"></view>
+      <view class="detailed">
+        <label class="title">小帮助</label>
+        <label>还款日</label>
+        <text>一定要在这个日期前还款，若超过此期限，你对于本期所欠银行的款项就要缴纳利息及其他相关费用了。</text>
+        <label>结算日</label>
+        <text>指银行对你每个月用信用卡交易起算的日期。</text>
+        <text class="notes">* 持卡人只有在还款日前将账单还清才能享受免息期。</text>
+        <text class="notes">* 信用卡还款最好是提前2-3天，以免影响个人信用。</text>
+      </view>
+      <button class="close" bindtap="closeHelp"></button>
+    </view>
+  </view>
+</view>

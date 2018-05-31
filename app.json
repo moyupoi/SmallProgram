@@ -1,6 +1,7 @@
 {
   "pages": [
     "src/home/home",
+    "src/cardBag/cardBag",
     "src/friendsHelpRecord/friendsHelpRecord",
     "src/throughputRate/throughputRate",
     "src/personalCenter/personalCenter",
