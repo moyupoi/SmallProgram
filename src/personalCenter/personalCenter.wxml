@@ -16,7 +16,7 @@
       <image src="./images/icon03.png"></image>
       <text>好友助力</text>
     </navigator>
-    <navigator hover-class="none" bindtap="queryProject">
+    <navigator url="/src/wallet/wallet" hover-class="none">
       <image src="./images/icon04.png"></image>
       <text>钱包</text>
     </navigator>

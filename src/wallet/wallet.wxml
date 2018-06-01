@@ -1,18 +1,22 @@
-<view class="moneyFrame">
-  <open-data type="userAvatarUrl" class="portrait"></open-data>
+<view class="walletFrame">
+
   <view class="deposit">
+    <open-data type="userAvatarUrl" class="portrait"></open-data>
     <text class="title">可提现</text>
-    <label class="totalAmount">￥203</label>
-    <view class="bonus">
-      <text>获得总奖金</text>
-      <label>1203</label>
-    </view>
-    <view class="bonus">
-      <text>已提现</text>
-      <label>1000</label>
+    <label class="symbol">￥</label>
+    <label class="totalAmount">0</label>
+    <view class="back">
+      <view class="bonus">
+        <text>0</text>
+        <label>获得总奖金</label>
+      </view>
+      <view class="bonus">
+        <text>0</text>
+        <label>已提现</label>
+      </view>
     </view>
   </view>
-  <view class="record" hidden="{{isRecord}}">
+  <view class="record" hidden="{{isRecord}}" hidden="{{wallet}}">
     <view class="recordList">
       <view>
         <text>助力好友成功办卡</text>

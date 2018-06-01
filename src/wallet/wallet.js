@@ -4,7 +4,8 @@ const app = getApp()
 Page({
   data: {
     access_token: '',
-    isRecord: false
+    isRecord: false,
+    wallet: true
   },
   onLoad: function (options) {
     const that = this
