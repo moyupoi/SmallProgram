@@ -30,6 +30,8 @@ Page({
         rankings: true
       })
       that.loadInit(that.data.parPage, that.data.page, '', that.data.themeArrayIndex)
+    } else {
+      resetLogin(that)
     }
   },
   loadInit: function (per_page, page, bank_id, theme) {

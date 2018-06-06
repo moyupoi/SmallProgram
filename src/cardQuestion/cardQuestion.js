@@ -1,5 +1,5 @@
 import config from '../../config'
-const app = getApp()
+import { resetLogin } from '../../layouts/assets/javascript/bindMethods.js'
 
 Page({
   data: {
@@ -20,6 +20,8 @@ Page({
         rankings: true
       })
       that.loadInit()
+    } else {
+      resetLogin(that)
     }
   },
   loadInit: function () {

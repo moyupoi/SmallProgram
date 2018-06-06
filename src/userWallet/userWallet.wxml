@@ -1,0 +1,48 @@
+<view class="walletFrame" wx:if="{{state == 'initial'}}">
+  <view class="deposit">
+    <text class="title">可提现</text>
+    <label class="symbol">￥</label>
+    <label class="totalAmount">{{balanceAmount}}</label>
+  </view>
+  <view class="cashForm">
+    <view class="money">
+      <text>提现金额</text>
+      <input maxlength="5" bindinput="inputMoney" value="{{inputMoney}}"/>
+      <label bindtap="closeBtn" wx:if="{{inputMoney.length > 0}}"></label>
+      <button bindtap="allMoney">全部提现</button>
+    </view>
+    <view class="code">
+      <text bindtap="">图形验证码</text>
+      <input maxlength="4" bindinput="inputCode" value="{{inputCode}}"/>
+      <image src="{{codeImg}}" bindtap="codeBtn"></image>
+    </view>
+  </view>
+  <button class="withdraw" bindtap="withdrawMoney">提现</button>
+</view>
+<view class="shortMessageCode" wx:if="{{state == 'code'}}">
+  <text>请输入短信验证码</text>
+  <input type="number" value="{{codeVal}}" focus="{{focus}}" maxlength="4" bindinput="codeInput" ></input>
+  <view class="labMassageCode" bindtap="labMassageCode">
+    <view class="changeNumber">
+      <label style="background:{{codeVal.length == 0 ? '#01DBB1' : '#D8D8D8' }}" wx:if="{{codeVal.length < 1}}"></label>
+      <text>{{codeVal[0]}}</text>
+    </view>
+    <view class="changeNumber">
+      <label wx:if="{{codeVal.length < 2}}" style="background:{{codeVal.length >= 1 ? '#01DBB1' : '#D8D8D8' }}"></label>
+      <text>{{codeVal[1]}}</text>
+    </view>
+    <view class="changeNumber">
+      <label wx:if="{{codeVal.length < 3}}" style="background:{{codeVal.length >= 2 ? '#01DBB1' : '#D8D8D8' }}"></label>
+      <text>{{codeVal[2]}}</text>
+    </view>
+    <view class="changeNumber">
+      <label wx:if="{{codeVal.length < 4}}" style="background:{{codeVal.length >= 3 ? '#01DBB1' : '#D8D8D8' }}"></label>
+      <text>{{codeVal[3]}}</text>
+    </view>
+  </view>
+</view>
+<view class="success" wx:if="{{state == 'success'}}">
+  <image src="./images/success.png"></image>
+  <text>提现成功</text>
+  <button bindtap="completeBtn">完成</button>
+</view>

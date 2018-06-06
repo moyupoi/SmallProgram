@@ -1,5 +1,5 @@
 import config from '../../config'
-const app = getApp()
+import { resetLogin } from '../../layouts/assets/javascript/bindMethods.js'
 
 Page({
   data: {
@@ -12,6 +12,8 @@ Page({
       that.setData({
         access_token: access_token
       })
+    } else {
+      resetLogin(that)
     }
   }
 })

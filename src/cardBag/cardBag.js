@@ -1,7 +1,6 @@
 import config from '../../config'
 import { resetLogin } from '../../layouts/assets/javascript/bindMethods.js'
 
-
 Page({
   data: {
     access_token: '',
@@ -46,6 +45,8 @@ Page({
           isHome: false
         })
       }
+    } else {
+      resetLogin(that)
     }
   },
   cardBagList: function () {

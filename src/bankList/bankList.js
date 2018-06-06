@@ -21,6 +21,8 @@ Page({
         rankings: true
       })
       that.loadInit()
+    } else {
+      resetLogin(that)
     }
   },
   loadInit: function () {

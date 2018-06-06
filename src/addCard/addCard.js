@@ -12,6 +12,8 @@ Page({
       that.setData({
         access_token: access_token
       })
+    } else {
+      resetLogin(that)
     }
   }
 })

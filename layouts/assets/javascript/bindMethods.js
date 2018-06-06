@@ -12,9 +12,14 @@ export function resetLogin (th) {
           data: {
             code: res.code
           }, success: function (res) {
+            debugger
             wx.setStorage({
               key: "access_token",
               data: res.data.access_token
+            })
+            wx.setStorage({
+              key: "userid",
+              data: res.data.id
             })
             th.onLoad()
 

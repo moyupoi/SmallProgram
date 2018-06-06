@@ -1,11 +1,12 @@
 {
   "pages": [
     "src/home/home",
+    "src/wallet/wallet",
+    "src/userWallet/userWallet",
     "src/cardBag/cardBag",
     "src/friendsHelpRecord/friendsHelpRecord",
     "src/throughputRate/throughputRate",
     "src/personalCenter/personalCenter",
-    "src/wallet/wallet",
     "src/friendsHelpList/friendsHelpList",
     "src/friendsHelp/friendsHelp",
     "src/progressQuery/progressQuery",

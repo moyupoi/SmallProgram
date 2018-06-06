@@ -12,6 +12,7 @@ page {
   background: #31DCB2;
   overflow: hidden;
   text-align: center;
+  position: relative;
 }
 .deposit .portrait {
   display: block;
@@ -41,6 +42,17 @@ page {
   font-size: 84rpx;
   color: #fff;
 }
+.deposit .frequency {
+  display: table;
+  margin: 0 auto;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #fff;
+  background: #00C18D;
+  padding: 4rpx 25rpx;
+  border-radius: 50rpx;
+
+}
 .deposit .back {
   background: rgba(255, 255, 255, 0.2);
   height: 160rpx;
@@ -65,6 +77,16 @@ page {
   font-size: 28rpx;
   margin-top: 20rpx;
   font-weight: 300;
+}
+.deposit button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
 }
 .record {
   background: #fff;

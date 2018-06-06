@@ -1,47 +1,32 @@
 <view class="walletFrame">
-
   <view class="deposit">
     <open-data type="userAvatarUrl" class="portrait"></open-data>
     <text class="title">可提现</text>
     <label class="symbol">￥</label>
-    <label class="totalAmount">0</label>
+    <label class="totalAmount">{{userWallet.balance_amount}}</label>
+    <text class="frequency" wx:if="{{isFrequency}}">今日可提现次数：{{userWallet.withdraw_day_limit}}</text>
     <view class="back">
       <view class="bonus">
-        <text>0</text>
+        <text>{{userWallet.income_amount}}</text>
         <label>获得总奖金</label>
       </view>
       <view class="bonus">
-        <text>0</text>
+        <text>{{userWallet.withdraw_amount}}</text>
         <label>已提现</label>
       </view>
     </view>
+    <block wx:if="{{!isPhone}}">
+      <button open-type="getPhoneNumber" bindgetphonenumber="cashIn"></button>
+    </block>
+    <block wx:else>
+      <button bindtap="cashIn"></button>
+    </block>
   </view>
-  <view class="record" hidden="{{isRecord}}" hidden="{{wallet}}">
+  <view class="record" wx:for="{{userWalletBills}}" wx:key="index">
     <view class="recordList">
       <view>
-        <text>助力好友成功办卡</text>
-        <time>2018-05-07 18:05:26</time>
-      </view>
-      <label>+50</label>
-    </view>
-    <view class="recordList">
-      <view>
-        <text>助力好友成功办卡</text>
-        <time>2018-05-07 18:05:26</time>
-      </view>
-      <label>+50</label>
-    </view>
-    <view class="recordList">
-      <view>
-        <text>助力好友成功办卡</text>
-        <time>2018-05-07 18:05:26</time>
-      </view>
-      <label>+50</label>
-    </view>
-    <view class="recordList">
-      <view>
-        <text>助力好友成功办卡</text>
-        <time>2018-05-07 18:05:26</time>
+        <text>{{item.category_name}}</text>
+        <time>{{item.created_at}}</time>
       </view>
       <label>+50</label>
     </view>
