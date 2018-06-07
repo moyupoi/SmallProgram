@@ -1,5 +1,4 @@
 import config from '../../../config'
-
 // 重新登录方法
 export function resetLogin (th) {
   const that = this
@@ -12,7 +11,6 @@ export function resetLogin (th) {
           data: {
             code: res.code
           }, success: function (res) {
-            debugger
             wx.setStorage({
               key: "access_token",
               data: res.data.access_token
@@ -21,8 +19,9 @@ export function resetLogin (th) {
               key: "userid",
               data: res.data.id
             })
-            th.onLoad()
-
+            if (th != '') {
+              th.onLoad()
+            }
           }
         })
       }

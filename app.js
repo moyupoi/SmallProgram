@@ -1,4 +1,5 @@
 import config from 'config'
+import { resetLogin } from '/layouts/assets/javascript/bindMethods.js'
 //app.js
 App({
   globalData: {
@@ -13,6 +14,8 @@ App({
     shareTicket: ''
   },
   onLaunch: function (options) {
+
+
     // const that = this
     // // 展示本地存储能力
     // const access_token = wx.getStorageSync('access_token') || ''
@@ -48,6 +51,16 @@ App({
   },
   onShow: function (options) {
     var that = this
+    wx.checkSession({
+      success: function(){
+        //session_key 未过期，并且在本生命周期一直有效
+      },
+      fail: function(){
+        // session_key 已经失效，需要重新执行登录流程
+        resetLogin('')
+      }
+    })
+
     // 分享获取群信息
     wx.showShareMenu({
       withShareTicket: true

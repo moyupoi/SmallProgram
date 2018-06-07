@@ -28,7 +28,7 @@
         <text>{{item.category_name}}</text>
         <time>{{item.created_at}}</time>
       </view>
-      <label>+50</label>
+      <label>{{item.amount}}</label>
     </view>
   </view>
 </view>

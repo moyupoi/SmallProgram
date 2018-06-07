@@ -5,7 +5,7 @@ Page({
   data: {
     access_token: '',
     userid: '',
-    balanceAmount: 30,
+    balanceAmount: 0,
     codeImg: '',
     inputMoney: 0,
     inputCode: '',
@@ -22,8 +22,8 @@ Page({
       that.setData({
         access_token: access_token,
         userid: userid,
-        codeImg: config.host + '/v1/user_wallets/captcha?user_id=' + userid + '&time=' + Date.parse(new Date())
-        // balanceAmount: options.balanceAmount
+        codeImg: config.host + '/v1/user_wallets/captcha?user_id=' + userid + '&time=' + Date.parse(new Date()),
+        balanceAmount: options.balanceAmount
       })
       that.walletInit()
     }
